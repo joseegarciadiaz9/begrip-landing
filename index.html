@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BeGrip — Overgrips de pádel · Próximamente</title>
+<meta name="description" content="BeGrip: overgrips de pádel que agarran de verdad. Lanzamiento próximamente. Déjanos tu email y entérate el primero.">
+<meta property="og:title" content="BeGrip — Overgrips de pádel">
+<meta property="og:description" content="El grip que no te suelta. Lanzamiento próximamente.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0c0f0a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230c0f0a'/%3E%3Ctext x='50' y='70' text-anchor='middle' font-family='Arial Black,Arial' font-weight='800' font-size='54' fill='%23b6f035'%3Ebg%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --volt:#b6f035;
+    --volt-dim:#8fbf1c;
+    --ink:#0a0d08;
+    --ink-2:#12170e;
+    --line:#252c1c;
+    --text:#eef1e6;
+    --muted:#9aa389;
+    --display:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    --body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--ink);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .container{width:100%;max-width:1060px;margin:0 auto;padding:0 24px;}
+
+  /* ambient */
+  .glow{position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(55% 45% at 78% 8%, rgba(182,240,53,.16), transparent 62%),
+      radial-gradient(45% 40% at 8% 96%, rgba(182,240,53,.07), transparent 60%);}
+  .content{position:relative;z-index:1;}
+
+  /* nav */
+  nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0;}
+  .logo{font-family:var(--display);font-weight:800;font-size:1.5rem;letter-spacing:-.03em;display:flex;align-items:center;gap:9px;}
+  .logo .mark{width:34px;height:34px;border-radius:9px;background:var(--volt);color:var(--ink);
+    display:grid;place-items:center;font-size:1.05rem;font-weight:800;letter-spacing:-.08em;}
+  .soon{font-family:var(--display);font-size:.68rem;font-weight:800;text-transform:uppercase;
+    letter-spacing:.16em;color:var(--volt);border:1px solid var(--line);
+    padding:7px 14px;border-radius:999px;white-space:nowrap;}
+
+  /* hero */
+  .hero{display:grid;grid-template-columns:1.08fr .92fr;gap:52px;align-items:center;padding:56px 0 84px;}
+  @media(max-width:860px){.hero{grid-template-columns:1fr;gap:44px;padding:34px 0 64px;}}
+  h1{font-family:var(--display);font-weight:800;text-transform:uppercase;
+    font-size:clamp(2.7rem,8.5vw,5rem);line-height:.9;letter-spacing:-.025em;margin:0;}
+  h1 em{font-style:normal;color:var(--volt);}
+  .lede{color:var(--muted);font-size:1.1rem;max-width:44ch;margin:24px 0 0;}
+
+  /* form */
+  form{margin:32px 0 0;max-width:460px;}
+  .field{display:flex;gap:10px;flex-wrap:wrap;}
+  input[type=email]{
+    flex:1;min-width:210px;background:var(--ink-2);border:1px solid var(--line);
+    color:var(--text);font-size:1rem;font-family:inherit;padding:15px 18px;border-radius:12px;
+  }
+  input[type=email]::placeholder{color:#6d745f;}
+  input[type=email]:focus{outline:none;border-color:var(--volt);}
+  button{
+    background:var(--volt);color:var(--ink);border:none;cursor:pointer;
+    font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.04em;
+    font-size:.92rem;padding:15px 26px;border-radius:12px;transition:transform .12s ease,filter .12s ease;
+  }
+  button:hover{transform:translateY(-2px);filter:brightness(1.06);}
+  button:focus-visible,input:focus-visible{outline:3px solid var(--volt);outline-offset:3px;}
+  .privacy{color:#6d745f;font-size:.8rem;margin:12px 0 0;}
+  .privacy.ok{color:var(--volt);}
+  .privacy.err{color:#e8804f;}
+
+  /* product */
+  .showcase{background:var(--ink-2);border:1px solid var(--line);border-radius:22px;padding:34px 28px 26px;}
+  .grips{display:flex;justify-content:center;align-items:flex-end;gap:26px;}
+  .grips figure{margin:0;text-align:center;}
+  .grips svg{display:block;}
+  .grips figcaption{font-family:var(--display);font-size:.7rem;font-weight:800;text-transform:uppercase;
+    letter-spacing:.1em;color:var(--muted);margin-top:14px;}
+
+  /* facts */
+  .facts{border-top:1px solid var(--line);padding:48px 0 72px;}
+  .facts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  @media(max-width:760px){.facts-grid{grid-template-columns:1fr;gap:22px;}}
+  .fact h3{font-family:var(--display);font-size:1rem;font-weight:800;text-transform:uppercase;
+    letter-spacing:.02em;margin:0 0 8px;}
+  .fact h3::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;
+    background:var(--volt);margin-right:10px;vertical-align:middle;}
+  .fact p{color:var(--muted);margin:0;font-size:.96rem;}
+
+  footer{border-top:1px solid var(--line);padding:30px 0 46px;color:#6d745f;font-size:.86rem;
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  footer a{color:var(--muted);text-decoration:none;}
+  footer a:hover{color:var(--volt);}
+
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;}button:hover{transform:none;}}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="content">
+
+  <div class="container">
+    <nav>
+      <div class="logo"><span class="mark">bg</span>BeGrip</div>
+      <span class="soon">Próximamente</span>
+    </nav>
+
+    <header class="hero">
+      <div>
+        <h1>El grip que<br><em>no te suelta</em></h1>
+        <p class="lede">
+          Estamos preparando BeGrip: overgrips de pádel que absorben el sudor
+          y agarran de verdad. Todavía no están a la venta — déjanos tu email
+          y serás de los primeros en probarlos.
+        </p>
+
+        <form id="signup" method="POST">
+          <div class="field">
+            <label for="email" class="sr-only" style="position:absolute;left:-9999px;">Tu email</label>
+            <input id="email" type="email" name="email" required placeholder="tu@email.com" autocomplete="email">
+            <button type="submit">Avísame</button>
+          </div>
+          <!-- trampa antispam: los bots la rellenan, las personas no la ven -->
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
+          <p class="privacy" id="formMsg">Solo te escribiremos para el lanzamiento. Nada de spam, y te puedes borrar cuando quieras.</p>
+        </form>
+      </div>
+
+      <div class="showcase">
+        <div class="grips">
+          <figure>
+            <svg viewBox="0 0 130 240" width="118" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Overgrip blanco con logo negro">
+              <defs>
+                <linearGradient id="gw" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="#d8dcd2"/><stop offset=".45" stop-color="#ffffff"/><stop offset="1" stop-color="#cfd4c8"/>
+                </linearGradient>
+              </defs>
+              <rect x="27" y="8" width="76" height="224" rx="19" fill="url(#gw)"/>
+              <g stroke="#e7eae1" stroke-width="2.5">
+                <line x1="27" y1="42" x2="103" y2="26"/><line x1="27" y1="74" x2="103" y2="58"/>
+                <line x1="27" y1="106" x2="103" y2="90"/><line x1="27" y1="138" x2="103" y2="122"/>
+                <line x1="27" y1="170" x2="103" y2="154"/>
+              </g>
+              <rect x="27" y="192" width="76" height="40" rx="10" fill="#f7f8f4"/>
+              <text x="65" y="220" text-anchor="middle" font-family="Arial Black,Arial" font-weight="800" font-size="25" letter-spacing="-1.5" fill="#0a0d08">bg</text>
+            </svg>
+            <figcaption>Blanco</figcaption>
+          </figure>
+
+          <figure>
+            <svg viewBox="0 0 130 240" width="118" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Overgrip negro con logo verde volt">
+              <defs>
+                <linearGradient id="gk" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="#080b06"/><stop offset=".45" stop-color="#252c1c"/><stop offset="1" stop-color="#080b06"/>
+                </linearGradient>
+              </defs>
+              <rect x="27" y="8" width="76" height="224" rx="19" fill="url(#gk)"/>
+              <g stroke="#333c26" stroke-width="2.5">
+                <line x1="27" y1="42" x2="103" y2="26"/><line x1="27" y1="74" x2="103" y2="58"/>
+                <line x1="27" y1="106" x2="103" y2="90"/><line x1="27" y1="138" x2="103" y2="122"/>
+                <line x1="27" y1="170" x2="103" y2="154"/>
+              </g>
+              <rect x="27" y="192" width="76" height="40" rx="10" fill="#0a0d08"/>
+              <text x="65" y="220" text-anchor="middle" font-family="Arial Black,Arial" font-weight="800" font-size="25" letter-spacing="-1.5" fill="#b6f035">bg</text>
+            </svg>
+            <figcaption>Negro</figcaption>
+          </figure>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <section class="facts">
+    <div class="container facts-grid">
+      <div class="fact">
+        <h3>Agarre y sudor</h3>
+        <p>Overgrip de poliuretano: absorbe la humedad y mantiene la mano seca hasta el último punto.</p>
+      </div>
+      <div class="fact">
+        <h3>Al buzón</h3>
+        <p>Pensados para enviarse en sobre plano, así te llegan sin esperar al mensajero.</p>
+      </div>
+      <div class="fact">
+        <h3>Packs y suscripción</h3>
+        <p>Podrás comprarlos sueltos o recibirlos cada mes automáticamente. Detalles en el lanzamiento.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <footer>
+      <span>BeGrip · begrip.store</span>
+      <span><a href="mailto:hola@begrip.store">hola@begrip.store</a></span>
+    </footer>
+  </div>
+
+</div>
+
+<script>
+/* ── ÚNICA LÍNEA QUE HAY QUE TOCAR ──────────────────────────────────────────
+   Cuando tengas la cuenta de Formspree (formspree.io → New Form), pega aquí
+   la URL que te dan, tal cual. Ejemplo:
+       const FORMSPREE = "https://formspree.io/f/xyzabcd";
+   Mientras esté vacía, el formulario abre el correo del visitante con el
+   email ya escrito, así no pierdes ningún registro.                          */
+const FORMSPREE = "";
+const CONTACTO  = "hola@begrip.store";
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+(function () {
+  const form = document.getElementById("signup");
+  const msg  = document.getElementById("formMsg");
+  const btn  = form.querySelector("button");
+  const base = msg.textContent;
+
+  if (FORMSPREE) form.action = FORMSPREE;
+
+  function say(text, kind) {
+    msg.textContent = text;
+    msg.className = "privacy" + (kind ? " " + kind : "");
+  }
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    if (form._gotcha.value) return;            // bot
+    const email = form.email.value.trim();
+    if (!email) return;
+
+    // Sin Formspree todavía: abrimos el cliente de correo del visitante.
+    if (!FORMSPREE) {
+      const asunto = encodeURIComponent("Avísame del lanzamiento de BeGrip");
+      const cuerpo = encodeURIComponent("Hola BeGrip:\n\nAvisadme cuando salgan los overgrips.\nMi email: " + email + "\n");
+      window.location.href = "mailto:" + CONTACTO + "?subject=" + asunto + "&body=" + cuerpo;
+      say("Te abrimos el correo para confirmarlo: dale a enviar y listo.", "ok");
+      return;
+    }
+
+    btn.disabled = true;
+    say("Enviando…");
+    try {
+      const res = await fetch(FORMSPREE, {
+        method: "POST",
+        headers: { "Accept": "application/json" },
+        body: new FormData(form)
+      });
+      if (res.ok) {
+        form.querySelector(".field").style.display = "none";
+        say("¡Hecho! Te avisamos en cuanto salgan. 🎾", "ok");
+      } else {
+        throw new Error("Formspree respondió " + res.status);
+      }
+    } catch (err) {
+      btn.disabled = false;
+      say("No hemos podido guardarlo. Escríbenos a " + CONTACTO + " y te apuntamos.", "err");
+    }
+  });
+
+  // Si el visitante vuelve a escribir, restauramos el texto normal.
+  form.email.addEventListener("input", function () {
+    if (msg.className !== "privacy") say(base);
+  });
+})();
+</script>
+</body>
+</html>
