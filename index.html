@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BeGrip — Overgrips de pádel · Próximamente</title>
-<meta name="description" content="Overgrips de pádel con agarre real y máxima absorción. Lanzamiento próximamente: déjanos tu email y te avisamos el primero.">
+<meta name="description" content="Overgrips de pádel con agarre real y máxima absorción. Packs desde 6,90 € y suscripción. Lanzamiento próximamente: déjanos tu email y te avisamos el primero.">
 <meta property="og:title" content="BeGrip — Overgrips de pádel">
 <meta property="og:description" content="El grip que no te suelta. Lanzamiento próximamente.">
 <meta property="og:type" content="website">
@@ -29,104 +29,165 @@
     --line:#222a19;
     --text:#eef1e6;
     --muted:#8f9880;
+    --dim:#5e6651;
     --display:"Helvetica Neue",Helvetica,Arial,sans-serif;
     --body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
   body{
-    background:var(--ink);color:var(--text);font-family:var(--body);
-    line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+    background:var(--ink); color:var(--text); font-family:var(--body);
+    line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden;
   }
-  .container{width:100%;max-width:1040px;margin:0 auto;padding:0 26px;}
+  .container{ width:100%; max-width:1040px; margin:0 auto; padding:0 26px; }
 
-  .glow{position:fixed;inset:0;pointer-events:none;z-index:0;
+  .glow{ position:fixed; inset:0; pointer-events:none; z-index:0;
     background:
       radial-gradient(50% 42% at 80% 4%, rgba(182,240,53,.13), transparent 64%),
-      radial-gradient(42% 38% at 4% 98%, rgba(182,240,53,.05), transparent 62%);}
-  .content{position:relative;z-index:1;}
+      radial-gradient(42% 38% at 4% 70%, rgba(182,240,53,.05), transparent 62%); }
+  .content{ position:relative; z-index:1; }
 
-  /* entrada */
-  .rise{opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards;}
+  .rise{ opacity:0; transform:translateY(14px); animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards; }
   .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}
   .d4{animation-delay:.35s}.d5{animation-delay:.5s}
-  @keyframes rise{to{opacity:1;transform:none;}}
+  @keyframes rise{ to{ opacity:1; transform:none; } }
 
-  nav{display:flex;align-items:center;justify-content:space-between;padding:28px 0;}
-  .logo{font-family:var(--display);font-weight:800;font-size:1.45rem;letter-spacing:-.03em;
-    display:flex;align-items:center;gap:10px;}
-  .logo .mark{width:34px;height:34px;border-radius:9px;background:var(--volt);color:var(--ink);
-    display:grid;place-items:center;font-size:1.02rem;font-weight:800;letter-spacing:-.08em;}
-  .soon{font-family:var(--display);font-size:.66rem;font-weight:800;text-transform:uppercase;
-    letter-spacing:.17em;color:var(--volt);border:1px solid var(--line);
-    padding:7px 15px;border-radius:999px;white-space:nowrap;}
+  nav{ display:flex; align-items:center; justify-content:space-between; padding:28px 0; }
+  .logo{ font-family:var(--display); font-weight:800; font-size:1.45rem; letter-spacing:-.03em;
+    display:flex; align-items:center; gap:10px; }
+  .logo .mark{ width:34px; height:34px; border-radius:9px; background:var(--volt); color:var(--ink);
+    display:grid; place-items:center; font-size:1.02rem; font-weight:800; letter-spacing:-.08em; }
+  .soon{ font-family:var(--display); font-size:.66rem; font-weight:800; text-transform:uppercase;
+    letter-spacing:.17em; color:var(--volt); border:1px solid var(--line);
+    padding:7px 15px; border-radius:999px; white-space:nowrap; }
 
-  .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:60px 0 92px;}
-  @media(max-width:880px){.hero{grid-template-columns:1fr;gap:46px;padding:32px 0 66px;}}
-  h1{font-family:var(--display);font-weight:800;text-transform:uppercase;
-    font-size:clamp(2.8rem,8.6vw,5.1rem);line-height:.88;letter-spacing:-.028em;margin:0;}
-  h1 em{font-style:normal;color:var(--volt);}
-  .lede{color:var(--muted);font-size:1.09rem;max-width:40ch;margin:26px 0 0;}
+  /* ---------- HERO ---------- */
+  .hero{ display:grid; grid-template-columns:1.1fr .9fr; gap:56px; align-items:center; padding:56px 0 88px; }
+  @media(max-width:880px){ .hero{ grid-template-columns:1fr; gap:46px; padding:30px 0 62px; } }
+  h1{ font-family:var(--display); font-weight:800; text-transform:uppercase;
+    font-size:clamp(2.8rem,8.6vw,5.1rem); line-height:.88; letter-spacing:-.028em; margin:0; }
+  h1 em{ font-style:normal; color:var(--volt); }
+  .lede{ color:var(--muted); font-size:1.09rem; max-width:40ch; margin:26px 0 0; }
 
-  form{margin:34px 0 0;max-width:450px;}
-  .field{display:flex;gap:10px;flex-wrap:wrap;}
+  form{ margin:34px 0 0; max-width:450px; }
+  .field{ display:flex; gap:10px; flex-wrap:wrap; }
   input[type=email]{
-    flex:1;min-width:200px;background:var(--ink-2);border:1px solid var(--line);
-    color:var(--text);font-size:1rem;font-family:inherit;padding:16px 18px;border-radius:12px;
+    flex:1; min-width:200px; background:var(--ink-2); border:1px solid var(--line);
+    color:var(--text); font-size:1rem; font-family:inherit; padding:16px 18px; border-radius:12px;
     transition:border-color .15s ease;
   }
-  input[type=email]::placeholder{color:#5e6651;}
-  input[type=email]:focus{outline:none;border-color:var(--volt);}
+  input[type=email]::placeholder{ color:var(--dim); }
+  input[type=email]:focus{ outline:none; border-color:var(--volt); }
   button{
-    background:var(--volt);color:var(--ink);border:none;cursor:pointer;
-    font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.04em;
-    font-size:.92rem;padding:16px 28px;border-radius:12px;
-    transition:transform .12s ease,filter .12s ease;
+    background:var(--volt); color:var(--ink); border:none; cursor:pointer;
+    font-family:var(--display); font-weight:800; text-transform:uppercase; letter-spacing:.04em;
+    font-size:.92rem; padding:16px 28px; border-radius:12px;
+    transition:transform .12s ease, filter .12s ease;
   }
-  button:hover{transform:translateY(-2px);filter:brightness(1.07);}
-  button:disabled{opacity:.6;cursor:default;transform:none;}
-  button:focus-visible,input:focus-visible{outline:3px solid var(--volt);outline-offset:3px;}
+  button:hover{ transform:translateY(-2px); filter:brightness(1.07); }
+  button:disabled{ opacity:.6; cursor:default; transform:none; }
+  button:focus-visible, input:focus-visible, a:focus-visible{ outline:3px solid var(--volt); outline-offset:3px; }
   @media(max-width:560px){
-    .field{flex-direction:column;}
-    input[type=email],button{width:100%;}
-    button{padding:17px 28px;}
+    .field{ flex-direction:column; }
+    input[type=email], form button{ width:100%; }
   }
-  .privacy{color:#5e6651;font-size:.82rem;margin:13px 0 0;}
-  .privacy.ok{color:var(--volt);}
-  .privacy.err{color:#e8804f;}
+  .privacy{ color:var(--dim); font-size:.82rem; margin:13px 0 0; }
+  .privacy.ok{ color:var(--volt); }
+  .privacy.err{ color:#e8804f; }
 
-  /* estado de éxito */
-  .done{display:none;margin:34px 0 0;max-width:450px;
-    border:1px solid var(--line);background:var(--ink-2);border-radius:14px;padding:22px 24px;}
-  .done.show{display:block;animation:rise .5s cubic-bezier(.2,.7,.3,1) forwards;}
-  .done .tick{width:30px;height:30px;border-radius:50%;background:var(--volt);color:var(--ink);
-    display:grid;place-items:center;font-weight:800;font-size:1rem;margin-bottom:12px;}
-  .done h2{font-family:var(--display);font-size:1.05rem;font-weight:800;text-transform:uppercase;
-    letter-spacing:.01em;margin:0 0 6px;}
-  .done p{color:var(--muted);margin:0;font-size:.94rem;}
+  .done{ display:none; margin:34px 0 0; max-width:450px;
+    border:1px solid var(--line); background:var(--ink-2); border-radius:14px; padding:22px 24px; }
+  .done.show{ display:block; animation:rise .5s cubic-bezier(.2,.7,.3,1) forwards; }
+  .done .tick{ width:30px; height:30px; border-radius:50%; background:var(--volt); color:var(--ink);
+    display:grid; place-items:center; font-weight:800; font-size:1rem; margin-bottom:12px; }
+  .done h2{ font-family:var(--display); font-size:1.05rem; font-weight:800; text-transform:uppercase;
+    letter-spacing:.01em; margin:0 0 6px; }
+  .done p{ color:var(--muted); margin:0; font-size:.94rem; }
 
-  .showcase{display:flex;justify-content:center;align-items:flex-end;gap:34px;}
-  @media(max-width:880px){.showcase{gap:28px;}}
-  .showcase figure{margin:0;text-align:center;}
-  .showcase svg{display:block;filter:drop-shadow(0 26px 34px rgba(0,0,0,.55));}
-  .showcase figcaption{font-family:var(--display);font-size:.66rem;font-weight:800;
-    text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-top:18px;}
+  .showcase{ display:flex; justify-content:center; align-items:flex-end; gap:34px; }
+  @media(max-width:880px){ .showcase{ gap:28px; } }
+  .showcase figure{ margin:0; text-align:center; }
+  .showcase svg{ display:block; filter:drop-shadow(0 26px 34px rgba(0,0,0,.55)); }
+  .showcase figcaption{ font-family:var(--display); font-size:.66rem; font-weight:800;
+    text-transform:uppercase; letter-spacing:.14em; color:var(--muted); margin-top:18px; }
 
-  .strip{border-top:1px solid var(--line);padding:26px 0 46px;}
-  .strip ul{list-style:none;margin:0;padding:0;display:flex;gap:34px;flex-wrap:wrap;
-    color:var(--muted);font-size:.9rem;}
-  .strip li{display:flex;align-items:center;gap:9px;}
-  .strip li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--volt);flex:none;}
+  /* ---------- SECCIONES ---------- */
+  section{ padding:64px 0; border-top:1px solid var(--line); }
+  .sec-head{ margin-bottom:34px; }
+  .eyebrow{ font-family:var(--display); font-size:.66rem; font-weight:800; text-transform:uppercase;
+    letter-spacing:.18em; color:var(--volt); }
+  h2.sec{ font-family:var(--display); font-weight:800; text-transform:uppercase;
+    font-size:clamp(1.7rem,4.2vw,2.4rem); line-height:1; letter-spacing:-.02em; margin:10px 0 0; }
+  .sec-head p{ color:var(--muted); margin:14px 0 0; max-width:52ch; }
 
-  footer{border-top:1px solid var(--line);padding:24px 0 44px;color:#5e6651;font-size:.85rem;
-    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
-  footer a{color:var(--muted);text-decoration:none;}
-  footer a:hover{color:var(--volt);}
+  /* ---------- PACKS ---------- */
+  .packs{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media(max-width:860px){ .packs{ grid-template-columns:1fr; } }
+  .pack{
+    background:var(--ink-2); border:1px solid var(--line); border-radius:16px;
+    padding:26px 24px 24px; display:flex; flex-direction:column; position:relative;
+  }
+  .pack.feat{ border-color:var(--volt); }
+  .pack .tag{
+    position:absolute; top:-10px; left:24px; background:var(--volt); color:var(--ink);
+    font-family:var(--display); font-weight:800; font-size:.62rem; text-transform:uppercase;
+    letter-spacing:.1em; padding:4px 11px; border-radius:999px;
+  }
+  .pack .qty{ font-family:var(--display); font-weight:800; text-transform:uppercase;
+    font-size:1.15rem; letter-spacing:-.01em; }
+  .pack .who{ color:var(--muted); font-size:.86rem; margin-top:2px; }
+  .price{ display:flex; align-items:baseline; gap:9px; margin:18px 0 2px; }
+  .price .now{ font-family:var(--display); font-weight:800; font-size:2.3rem;
+    letter-spacing:-.03em; font-variant-numeric:tabular-nums; line-height:1; }
+  .price .per{ color:var(--muted); font-size:.82rem; }
+  .pack ul{ list-style:none; padding:0; margin:20px 0 24px; display:flex; flex-direction:column; gap:9px; }
+  .pack li{ font-size:.9rem; color:var(--text); display:flex; gap:9px; align-items:flex-start; }
+  .pack li::before{ content:""; width:5px; height:5px; border-radius:50%; background:var(--volt);
+    flex:none; margin-top:.55em; }
+  .notify{
+    margin-top:auto; display:block; width:100%; text-align:center; text-decoration:none;
+    background:transparent; color:var(--muted); border:1px solid var(--line);
+    font-family:var(--display); font-weight:800; text-transform:uppercase; letter-spacing:.06em;
+    font-size:.76rem; padding:13px 16px; border-radius:10px; transition:all .15s ease;
+  }
+  .notify:hover{ color:var(--volt); border-color:var(--volt); }
+  .pack.feat .notify{ background:var(--volt); color:var(--ink); border-color:var(--volt); }
+  .pack.feat .notify:hover{ filter:brightness(1.07); color:var(--ink); }
+
+  /* ---------- SUSCRIPCIÓN ---------- */
+  .club{
+    background:var(--ink-2); border:1px solid var(--line); border-radius:18px;
+    padding:34px; display:grid; grid-template-columns:1.25fr .75fr; gap:30px; align-items:center;
+  }
+  @media(max-width:800px){ .club{ grid-template-columns:1fr; padding:28px; } }
+  .club h3{ font-family:var(--display); font-weight:800; text-transform:uppercase;
+    font-size:1.5rem; letter-spacing:-.015em; margin:10px 0 0; }
+  .club h3 em{ font-style:normal; color:var(--volt); }
+  .club p{ color:var(--muted); margin:12px 0 0; }
+  .club-price{ text-align:right; }
+  @media(max-width:800px){ .club-price{ text-align:left; } }
+  .club-price .big{ font-family:var(--display); font-weight:800; font-size:2.6rem;
+    letter-spacing:-.03em; line-height:1; }
+  .club-price .small{ color:var(--muted); font-size:.86rem; margin-top:6px; }
+  .club-price .notify{ margin-top:16px; display:inline-block; width:auto; padding:13px 24px; }
+
+  /* ---------- STRIP ---------- */
+  .strip ul{ list-style:none; margin:0; padding:0; display:flex; gap:34px; flex-wrap:wrap;
+    color:var(--muted); font-size:.9rem; }
+  .strip li{ display:flex; align-items:center; gap:9px; }
+  .strip li::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--volt); flex:none; }
+
+  footer{ border-top:1px solid var(--line); padding:24px 0 44px; color:var(--dim); font-size:.85rem;
+    display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  footer a{ color:var(--muted); text-decoration:none; }
+  footer a:hover{ color:var(--volt); }
 
   @media(prefers-reduced-motion:reduce){
-    *{transition:none!important;animation:none!important;}
-    .rise{opacity:1;transform:none;}
-    button:hover{transform:none;}
+    html{ scroll-behavior:auto; }
+    *{ transition:none!important; animation:none!important; }
+    .rise{ opacity:1; transform:none; }
+    button:hover{ transform:none; }
   }
 </style>
 </head>
@@ -234,12 +295,84 @@
     </header>
   </div>
 
+  <!-- ---------- PACKS ---------- -->
   <div class="container">
-    <section class="strip">
+    <section id="packs">
+      <div class="sec-head">
+        <span class="eyebrow">Lo que vas a poder comprar</span>
+        <h2 class="sec">Cuantos más, mejor precio</h2>
+        <p>Estos son los packs con los que salimos. Todavía no se pueden comprar —
+           apúntate y serás de los primeros en tenerlos.</p>
+      </div>
+
+      <div class="packs">
+        <div class="pack">
+          <span class="qty">Pack 3</span>
+          <span class="who">Para probarlos</span>
+          <div class="price"><span class="now">6,90 €</span><span class="per">2,30 € / ud</span></div>
+          <ul>
+            <li>3 overgrips, blanco o negro</li>
+            <li>Agarre seco y antideslizante</li>
+            <li>Envío 2,90 €</li>
+          </ul>
+          <a href="#email" class="notify" data-notify>Avísame</a>
+        </div>
+
+        <div class="pack feat">
+          <span class="tag">El más elegido</span>
+          <span class="qty">Pack 10</span>
+          <span class="who">Para toda la temporada</span>
+          <div class="price"><span class="now">14,90 €</span><span class="per">1,49 € / ud</span></div>
+          <ul>
+            <li>10 overgrips, mezcla los colores</li>
+            <li>Envío gratis al buzón</li>
+            <li>Te duran unos 3 meses jugando 2 días/semana</li>
+          </ul>
+          <a href="#email" class="notify" data-notify>Avísame</a>
+        </div>
+
+        <div class="pack">
+          <span class="qty">Pack 30</span>
+          <span class="who">Para el club o el grupo</span>
+          <div class="price"><span class="now">37,90 €</span><span class="per">1,26 € / ud</span></div>
+          <ul>
+            <li>30 overgrips, el mejor precio por unidad</li>
+            <li>Envío gratis</li>
+            <li>Ideal para repartir entre el grupo</li>
+          </ul>
+          <a href="#email" class="notify" data-notify>Avísame</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ---------- SUSCRIPCIÓN ---------- -->
+  <div class="container">
+    <section>
+      <div class="club">
+        <div>
+          <span class="eyebrow">Club BeGrip</span>
+          <h3>No vuelvas a quedarte<br><em>sin grip</em></h3>
+          <p>12 overgrips cada tres meses, directos a tu buzón. Es justo lo que gasta
+             alguien que juega dos o tres días por semana. Sin permanencia y con el mejor
+             precio por unidad.</p>
+        </div>
+        <div class="club-price">
+          <div class="big">16,90 €</div>
+          <div class="small">cada 3 meses · 1,41 € / ud</div>
+          <a href="#email" class="notify" data-notify>Avísame</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ---------- STRIP ---------- -->
+  <div class="container">
+    <section class="strip" style="padding:34px 0 46px">
       <ul>
         <li>Agarre seco hasta el último punto</li>
-        <li>Te llega al buzón</li>
-        <li>Packs sueltos o suscripción</li>
+        <li>Te llega al buzón en 24-48 h</li>
+        <li>Blanco y negro</li>
       </ul>
     </section>
 
@@ -264,8 +397,18 @@ const CONTACTO  = "hola@begrip.store";
   const msg  = document.getElementById("formMsg");
   const done = document.getElementById("done");
   const btn  = form.querySelector("button");
+  const input = document.getElementById("email");
 
   if (FORMSPREE) form.action = FORMSPREE;
+
+  // Los botones "Avísame" de los packs suben al formulario y le dan el foco
+  document.querySelectorAll("[data-notify]").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      form.scrollIntoView({ behavior: "smooth", block: "center" });
+      setTimeout(function () { input.focus(); }, 420);
+    });
+  });
 
   function say(text, kind) {
     msg.textContent = text;
@@ -275,7 +418,7 @@ const CONTACTO  = "hola@begrip.store";
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
     if (form._gotcha.value) return;
-    const email = form.email.value.trim();
+    const email = input.value.trim();
     if (!email) return;
 
     if (!FORMSPREE) {
