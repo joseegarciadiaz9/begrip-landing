@@ -68,7 +68,14 @@
   h1{ font-family:var(--display); font-weight:800; text-transform:uppercase;
     font-size:clamp(2.8rem,8.6vw,5.1rem); line-height:.88; letter-spacing:-.028em; margin:0; }
   h1 em{ font-style:normal; color:var(--volt); }
+  h1 .l1, h1 .l2{ display:inline-block; will-change:transform; }
   .lede{ color:var(--muted); font-size:1.09rem; max-width:40ch; margin:26px 0 0; }
+
+  /* el grip "se enrolla" al cargar: se revela desde la cinta hacia abajo */
+  .showcase svg{ clip-path:inset(0 0 100% 0); animation:wrap 1.15s cubic-bezier(.35,.8,.3,1) forwards; }
+  .showcase figure:nth-child(1) svg{ animation-delay:.55s; }
+  .showcase figure:nth-child(2) svg{ animation-delay:.75s; }
+  @keyframes wrap{ to{ clip-path:inset(0 0 0 0); } }
 
   form{ margin:34px 0 0; max-width:450px; }
   .field{ display:flex; gap:10px; flex-wrap:wrap; }
@@ -189,6 +196,7 @@
     html{ scroll-behavior:auto; }
     *{ transition:none!important; animation:none!important; }
     .rise{ opacity:1; transform:none; }
+    .showcase svg{ clip-path:none; }
     button:hover{ transform:none; }
   }
 </style>
@@ -205,7 +213,7 @@
 
     <header class="hero">
       <div>
-        <h1 class="rise d2">El grip que<br><em>no te suelta</em></h1>
+        <h1 class="rise d2"><span class="l1">El grip que</span><br><em class="l2">no te suelta</em></h1>
         <p class="lede rise d3">
           Overgrips de pádel con agarre real y máxima absorción del sudor.
           Aún no están a la venta: déjanos tu email y te avisamos el día del lanzamiento.
@@ -494,16 +502,27 @@ const CONTACTO  = "hola@begrip.store";
   if (reduce.matches) return;
 
   var stage = document.getElementById("showcase");
-  if (!stage) return;
-  var figs = Array.prototype.slice.call(stage.querySelectorAll("[data-grip]"));
-  if (!figs.length) return;
+  var l1 = document.querySelector("h1 .l1");
+  var l2 = document.querySelector("h1 .l2");
+  var figs = stage ? Array.prototype.slice.call(stage.querySelectorAll("[data-grip]")) : [];
+  if (!stage && !l1) return;
 
   var ticking = false;
 
   function render() {
     ticking = false;
-    var r = stage.getBoundingClientRect();
     var vh = window.innerHeight || document.documentElement.clientHeight;
+
+    /* --- El titular: "no te suelta" se resiste a irse --- */
+    if (l1 && l2) {
+      var y = window.pageYOffset || document.documentElement.scrollTop;
+      var t = Math.min(y / (vh * 0.9), 1);          // 0 → 1 al bajar el primer viewport
+      l1.style.transform = "translate3d(0," + (-t * 78).toFixed(1) + "px,0)";
+      l2.style.transform = "translate3d(0," + (-t * 16).toFixed(1) + "px,0)";  // se queda atrás: no se suelta
+    }
+
+    if (!stage || !figs.length) return;
+    var r = stage.getBoundingClientRect();
 
     // progreso de -1 (debajo del viewport) a 1 (encima)
     var center = r.top + r.height / 2;
