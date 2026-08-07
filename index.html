@@ -175,6 +175,31 @@
   .pack.feat .notify{ background:var(--volt); color:var(--ink); border-color:var(--volt); }
   .pack.feat .notify:hover{ filter:brightness(1.07); color:var(--ink); }
 
+  /* ---------- INTERRUPTOR DE VENTA ----------
+     Por defecto la tienda esta CERRADA: los botones no llevan a ningun sitio.
+     Al poner VENTA_ABIERTA = true (abajo, en el script) el JS anade la clase
+     .venta-abierta al body y los botones pasan a apuntar a Stripe.          */
+  .solo-abierto{ display:none; }
+  body.venta-abierta .solo-abierto{ display:inline; }
+  body.venta-abierta .solo-cerrado{ display:none; }
+  /* para parrafos enteros, que no se queden en linea */
+  .solo-abierto.bloque{ display:none; }
+  body.venta-abierta .solo-abierto.bloque{ display:block; }
+
+  /* botones inertes mientras la tienda esta cerrada */
+  body:not(.venta-abierta) .notify{
+    cursor:default; color:var(--dim); border-color:var(--line);
+    border-style:dashed; background:transparent;
+  }
+  body:not(.venta-abierta) .notify:hover{ color:var(--dim); border-color:var(--line); }
+  /* el pack destacado tiene el boton relleno: hay que apagarlo con la misma
+     especificidad, si no se queda verde y parece que se puede pulsar */
+  body:not(.venta-abierta) .pack.feat .notify,
+  body:not(.venta-abierta) .pack.feat .notify:hover{
+    background:transparent; color:var(--dim);
+    border-color:var(--line); border-style:dashed; filter:none;
+  }
+
   /* ---------- SUSCRIPCIÓN ---------- */
   .club{
     background:var(--ink-2); border:1px solid var(--line); border-radius:18px;
@@ -220,7 +245,7 @@
   <div class="container">
     <nav class="rise d1">
       <div class="logo"><span class="mark">bg</span>BeGrip</div>
-      <span class="soon">Envío al buzón 24-48 h</span>
+      <span class="soon"><span class="solo-cerrado">Próximamente</span><span class="solo-abierto">Envío al buzón 24-48 h</span></span>
     </nav>
 
     <header class="hero">
@@ -229,11 +254,12 @@
         <p class="lede rise d3">
           Overgrips de pádel con agarre real y máxima absorción del sudor.
           Desde 2,30 € la unidad, en un sobre plano que te cabe en el buzón.
+          <span class="solo-cerrado">Salen a la venta en unas semanas: déjanos tu email y te avisamos el primero.</span>
         </p>
 
         <div class="cta-row rise d4">
-          <a href="#packs" class="cta-main">Comprar</a>
-          <a href="#club" class="cta-sub">o suscríbete al Club</a>
+          <a href="#packs" class="cta-main"><span class="solo-cerrado">Ver los packs</span><span class="solo-abierto">Comprar</span></a>
+          <a href="#club" class="cta-sub">o mira el Club BeGrip</a>
         </div>
 
         <form id="signup" method="POST" class="rise d4">
@@ -243,7 +269,7 @@
             <button type="submit">Apuntarme</button>
           </div>
           <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
-          <p class="privacy" id="formMsg">¿Prefieres esperar? Te avisamos de novedades y ofertas. Sin spam.</p>
+          <p class="privacy" id="formMsg"><span class="solo-cerrado">Un solo correo el día que salgan. Sin spam.</span><span class="solo-abierto">¿Prefieres esperar? Te avisamos de novedades y ofertas. Sin spam.</span></p>
         </form>
 
         <div class="done" id="done">
@@ -395,8 +421,11 @@
       <div class="sec-head">
         <span class="eyebrow">Elige tu pack</span>
         <h2 class="sec">Cuantos más, mejor precio</h2>
-        <p>Estos son los packs con los que salimos. Pago seguro con tarjeta, Apple Pay o
-           Google Pay, y 14 días para devolverlo si no te convence.</p>
+        <p class="solo-cerrado bloque">Estos son los packs y los precios con los que salimos.
+           Todavía no se pueden comprar: estamos fabricando el primer lote. Apúntate arriba
+           y serás de los primeros en tenerlos.</p>
+        <p class="solo-abierto bloque">Estos son los packs con los que salimos. Pago seguro con tarjeta,
+           Apple Pay o Google Pay, y 14 días para devolverlo si no te convence.</p>
       </div>
 
       <div class="packs">
@@ -409,7 +438,7 @@
             <li>Agarre seco y antideslizante</li>
             <li>Envío 2,90 €</li>
           </ul>
-          <a href="https://buy.stripe.com/eVq9AM4hS2nB4Uc1FebAs00" class="notify">Comprar</a>
+          <a class="notify" data-buy="https://buy.stripe.com/eVq9AM4hS2nB4Uc1FebAs00" role="button" aria-disabled="true"><span class="solo-cerrado">Próximamente</span><span class="solo-abierto">Comprar</span></a>
         </div>
 
         <div class="pack feat">
@@ -422,7 +451,7 @@
             <li>Envío gratis al buzón</li>
             <li>Te duran unos 3 meses jugando 2 días/semana</li>
           </ul>
-          <a href="https://buy.stripe.com/eVq8wIdSsd2f0DWes0bAs01" class="notify">Comprar</a>
+          <a class="notify" data-buy="https://buy.stripe.com/eVq8wIdSsd2f0DWes0bAs01" role="button" aria-disabled="true"><span class="solo-cerrado">Próximamente</span><span class="solo-abierto">Comprar</span></a>
         </div>
 
         <div class="pack">
@@ -434,7 +463,7 @@
             <li>Envío gratis</li>
             <li>Ideal para repartir entre el grupo</li>
           </ul>
-          <a href="https://buy.stripe.com/8x2fZadSs0ftbiA4RqbAs02" class="notify">Comprar</a>
+          <a class="notify" data-buy="https://buy.stripe.com/8x2fZadSs0ftbiA4RqbAs02" role="button" aria-disabled="true"><span class="solo-cerrado">Próximamente</span><span class="solo-abierto">Comprar</span></a>
         </div>
       </div>
     </section>
@@ -454,7 +483,7 @@
         <div class="club-price">
           <div class="big">16,90 €</div>
           <div class="small">cada 3 meses · 1,41 € / ud</div>
-          <a href="https://buy.stripe.com/00w9AM8y8e6j0DW6ZybAs03" class="notify">Suscribirme</a>
+          <a class="notify" data-buy="https://buy.stripe.com/00w9AM8y8e6j0DW6ZybAs03" role="button" aria-disabled="true"><span class="solo-cerrado">Próximamente</span><span class="solo-abierto">Suscribirme</span></a>
         </div>
       </div>
     </section>
@@ -489,7 +518,29 @@
    Si se deja vacía, el formulario abre el correo del visitante.            */
 const FORMSPREE = "https://formspree.io/f/xkjwgjbj";
 const CONTACTO  = "hola@begrip.store";
+
+/* ¿La tienda esta abierta?
+   false → los botones ponen "Proximamente" y no llevan a ningun sitio.
+   true  → los botones ponen "Comprar" y llevan a Stripe.
+
+   Ponlo a true SOLO cuando se cumplan las dos cosas:
+     1. Stripe esta en modo activo (no en modo prueba).
+     2. Tienes el stock en casa para poder enviar.                            */
+const VENTA_ABIERTA = false;
 /* ─────────────────────────────────────────────────────────────────────────── */
+
+/* Los enlaces de Stripe viven en el atributo data-buy y solo se convierten en
+   enlaces de verdad si VENTA_ABIERTA es true. Asi, si el JS fallase o estuviera
+   desactivado, los botones se quedan inertes en vez de cobrar sin stock.      */
+(function () {
+  if (!VENTA_ABIERTA) return;
+  document.body.classList.add("venta-abierta");
+  document.querySelectorAll("[data-buy]").forEach(function (a) {
+    a.setAttribute("href", a.getAttribute("data-buy"));
+    a.removeAttribute("aria-disabled");
+    a.removeAttribute("role");
+  });
+})();
 
 (function () {
   const form = document.getElementById("signup");
