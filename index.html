@@ -71,11 +71,7 @@
   h1 .l1, h1 .l2{ display:inline-block; will-change:transform; }
   .lede{ color:var(--muted); font-size:1.09rem; max-width:40ch; margin:26px 0 0; }
 
-  /* el grip "se enrolla" al cargar: se revela desde la cinta hacia abajo */
-  .showcase svg{ clip-path:inset(0 0 100% 0); animation:wrap 1.15s cubic-bezier(.35,.8,.3,1) forwards; }
-  .showcase figure:nth-child(1) svg{ animation-delay:.55s; }
-  .showcase figure:nth-child(2) svg{ animation-delay:.75s; }
-  @keyframes wrap{ to{ clip-path:inset(0 0 0 0); } }
+  /* el enrollado lo controla el scroll desde JS (ver al final) */
 
   form{ margin:34px 0 0; max-width:450px; }
   .field{ display:flex; gap:10px; flex-wrap:wrap; }
@@ -240,12 +236,10 @@
         <figure data-grip="1">
           <svg viewBox="0 0 120 250" width="112" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Overgrip BeGrip blanco">
             <defs>
-              <!-- silueta del puño: ligeramente más ancho abajo, como un mango real -->
-              <clipPath id="cw">
-                <path d="M24,26 Q24,10 40,10 L80,10 Q96,10 96,26 L99,224 Q99,240 83,240 L37,240 Q21,240 21,224 Z"/>
-              </clipPath>
-              <!-- juntas del enrollado: sombra + labio brillante + sombra suave -->
-              <linearGradient id="wrapW" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="6" y2="23" spreadMethod="repeat">
+              <clipPath id="silW"><path d="M24,26 Q24,10 40,10 L80,10 Q96,10 96,26 L99,224 Q99,240 83,240 L37,240 Q21,240 21,224 Z"/></clipPath>
+              <!-- el borde de avance sigue el angulo real de la espiral -->
+              <clipPath id="wrpW"><polygon id="polyW" points="14,78.0 106,54.0 106,262 14,262"/></clipPath>
+              <linearGradient id="seamW" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="6" y2="23" spreadMethod="repeat">
                 <stop offset="0" stop-color="#000" stop-opacity="0"/>
                 <stop offset=".70" stop-color="#000" stop-opacity="0"/>
                 <stop offset=".88" stop-color="#000" stop-opacity=".20"/>
@@ -253,7 +247,6 @@
                 <stop offset=".975" stop-color="#000" stop-opacity=".10"/>
                 <stop offset="1" stop-color="#000" stop-opacity="0"/>
               </linearGradient>
-              <!-- volumen cilíndrico con brillo especular estrecho -->
               <linearGradient id="cylW" gradientUnits="userSpaceOnUse" x1="21" y1="0" x2="99" y2="0">
                 <stop offset="0" stop-color="#000" stop-opacity=".40"/>
                 <stop offset=".07" stop-color="#000" stop-opacity=".18"/>
@@ -264,28 +257,44 @@
                 <stop offset=".82" stop-color="#000" stop-opacity=".20"/>
                 <stop offset="1" stop-color="#000" stop-opacity=".46"/>
               </linearGradient>
-              <!-- sombreado a lo largo: extremos algo más oscuros -->
               <linearGradient id="lenW" gradientUnits="userSpaceOnUse" x1="0" y1="10" x2="0" y2="240">
-                <stop offset="0" stop-color="#000" stop-opacity=".16"/>
+                <stop offset="0" stop-color="#000" stop-opacity=".18"/>
                 <stop offset=".22" stop-color="#000" stop-opacity="0"/>
                 <stop offset=".80" stop-color="#000" stop-opacity="0"/>
-                <stop offset="1" stop-color="#000" stop-opacity=".22"/>
+                <stop offset="1" stop-color="#000" stop-opacity=".18"/>
+              </linearGradient>
+              <linearGradient id="bareW" gradientUnits="userSpaceOnUse" x1="21" y1="0" x2="99" y2="0">
+                <stop offset="0" stop-color="#000" stop-opacity=".55"/>
+                <stop offset=".33" stop-color="#fff" stop-opacity=".07"/>
+                <stop offset=".62" stop-color="#000" stop-opacity="0"/>
+                <stop offset="1" stop-color="#000" stop-opacity=".6"/>
               </linearGradient>
             </defs>
-            <g clip-path="url(#cw)">
-              <rect x="18" y="8" width="84" height="234" fill="#eceee7"/>
-              <rect x="18" y="8" width="84" height="234" fill="url(#wrapW)"/>
-              <rect x="18" y="8" width="84" height="234" fill="url(#cylW)"/>
-              <rect x="18" y="8" width="84" height="234" fill="url(#lenW)"/>
-              <!-- cinta de acabado -->
-              <rect x="18" y="8" width="84" height="46" fill="#0a0d08"/>
-              <rect x="18" y="8" width="84" height="46" fill="url(#cylW)" opacity=".5"/>
-              <!-- oclusión bajo la cinta -->
-              <rect x="18" y="54" width="84" height="7" fill="#000" opacity=".22"/>
+
+            <g clip-path="url(#silW)">
+              <!-- MANGO DESNUDO (debajo) -->
+              <rect x="18" y="8" width="84" height="234" fill="#15180f"/>
+              <g stroke="#000" stroke-opacity=".3" stroke-width="1.1" fill="none">
+                <path d="M40,8 L38,242"/><path d="M60,8 L60,242"/><path d="M80,8 L82,242"/>
+              </g>
+              <rect x="18" y="8" width="84" height="234" fill="url(#bareW)"/>
+
+              <!-- OVERGRIP: se enrolla segun el scroll -->
+              <g clip-path="url(#wrpW)">
+                <rect x="18" y="8" width="84" height="234" fill="#eceee7"/>
+                <rect x="18" y="8" width="84" height="234" fill="url(#seamW)"/>
+                <rect x="18" y="8" width="84" height="234" fill="url(#cylW)"/>
+                <rect x="18" y="8" width="84" height="234" fill="url(#lenW)"/>
+                <rect x="18" y="8" width="84" height="46" fill="#0a0d08"/>
+                <rect x="18" y="8" width="84" height="46" fill="url(#cylW)" opacity=".5"/>
+                <rect x="18" y="54" width="84" height="7" fill="#000" opacity=".22"/>
+                <text x="60" y="41" text-anchor="middle" font-family="Arial Black,Arial" font-weight="800" font-size="24" letter-spacing="-1.5" fill="#ffffff">bg</text>
+              </g>
+
+              <!-- canto de la cinta que avanza -->
+              <line id="edgeW" x1="14" y1="78.0" x2="106" y2="54.0" stroke="#ffffff" stroke-width="2.4" stroke-opacity=".85"/>
             </g>
-            <text x="60" y="41" text-anchor="middle" font-family="Arial Black,Arial" font-weight="800" font-size="24" letter-spacing="-1.5" fill="#ffffff">bg</text>
-            <path d="M24,26 Q24,10 40,10 L80,10 Q96,10 96,26 L99,224 Q99,240 83,240 L37,240 Q21,240 21,224 Z"
-                  fill="none" stroke="#000" stroke-opacity=".28"/>
+            <path d="M24,26 Q24,10 40,10 L80,10 Q96,10 96,26 L99,224 Q99,240 83,240 L37,240 Q21,240 21,224 Z" fill="none" stroke="#000" stroke-opacity=".28"/>
           </svg>
           <figcaption>Blanco</figcaption>
         </figure>
@@ -293,10 +302,10 @@
         <figure data-grip="-1">
           <svg viewBox="0 0 120 250" width="112" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Overgrip BeGrip negro">
             <defs>
-              <clipPath id="ck">
-                <path d="M24,26 Q24,10 40,10 L80,10 Q96,10 96,26 L99,224 Q99,240 83,240 L37,240 Q21,240 21,224 Z"/>
-              </clipPath>
-              <linearGradient id="wrapK" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="6" y2="23" spreadMethod="repeat">
+              <clipPath id="silK"><path d="M24,26 Q24,10 40,10 L80,10 Q96,10 96,26 L99,224 Q99,240 83,240 L37,240 Q21,240 21,224 Z"/></clipPath>
+              <!-- el borde de avance sigue el angulo real de la espiral -->
+              <clipPath id="wrpK"><polygon id="polyK" points="14,78.0 106,54.0 106,262 14,262"/></clipPath>
+              <linearGradient id="seamK" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="6" y2="23" spreadMethod="repeat">
                 <stop offset="0" stop-color="#000" stop-opacity="0"/>
                 <stop offset=".70" stop-color="#000" stop-opacity="0"/>
                 <stop offset=".88" stop-color="#000" stop-opacity=".62"/>
@@ -315,24 +324,43 @@
                 <stop offset="1" stop-color="#000" stop-opacity=".66"/>
               </linearGradient>
               <linearGradient id="lenK" gradientUnits="userSpaceOnUse" x1="0" y1="10" x2="0" y2="240">
-                <stop offset="0" stop-color="#000" stop-opacity=".20"/>
+                <stop offset="0" stop-color="#000" stop-opacity=".22"/>
                 <stop offset=".22" stop-color="#000" stop-opacity="0"/>
                 <stop offset=".80" stop-color="#000" stop-opacity="0"/>
-                <stop offset="1" stop-color="#000" stop-opacity=".26"/>
+                <stop offset="1" stop-color="#000" stop-opacity=".22"/>
+              </linearGradient>
+              <linearGradient id="bareK" gradientUnits="userSpaceOnUse" x1="21" y1="0" x2="99" y2="0">
+                <stop offset="0" stop-color="#000" stop-opacity=".55"/>
+                <stop offset=".33" stop-color="#fff" stop-opacity=".07"/>
+                <stop offset=".62" stop-color="#000" stop-opacity="0"/>
+                <stop offset="1" stop-color="#000" stop-opacity=".6"/>
               </linearGradient>
             </defs>
-            <g clip-path="url(#ck)">
-              <rect x="18" y="8" width="84" height="234" fill="#242a1d"/>
-              <rect x="18" y="8" width="84" height="234" fill="url(#wrapK)"/>
-              <rect x="18" y="8" width="84" height="234" fill="url(#cylK)"/>
-              <rect x="18" y="8" width="84" height="234" fill="url(#lenK)"/>
-              <rect x="18" y="8" width="84" height="46" fill="#070a05"/>
-              <rect x="18" y="8" width="84" height="46" fill="url(#cylK)" opacity=".5"/>
-              <rect x="18" y="54" width="84" height="7" fill="#000" opacity=".3"/>
+
+            <g clip-path="url(#silK)">
+              <!-- MANGO DESNUDO (debajo) -->
+              <rect x="18" y="8" width="84" height="234" fill="#12150d"/>
+              <g stroke="#000" stroke-opacity=".3" stroke-width="1.1" fill="none">
+                <path d="M40,8 L38,242"/><path d="M60,8 L60,242"/><path d="M80,8 L82,242"/>
+              </g>
+              <rect x="18" y="8" width="84" height="234" fill="url(#bareK)"/>
+
+              <!-- OVERGRIP: se enrolla segun el scroll -->
+              <g clip-path="url(#wrpK)">
+                <rect x="18" y="8" width="84" height="234" fill="#242a1d"/>
+                <rect x="18" y="8" width="84" height="234" fill="url(#seamK)"/>
+                <rect x="18" y="8" width="84" height="234" fill="url(#cylK)"/>
+                <rect x="18" y="8" width="84" height="234" fill="url(#lenK)"/>
+                <rect x="18" y="8" width="84" height="46" fill="#070a05"/>
+                <rect x="18" y="8" width="84" height="46" fill="url(#cylK)" opacity=".5"/>
+                <rect x="18" y="54" width="84" height="7" fill="#000" opacity=".30"/>
+                <text x="60" y="41" text-anchor="middle" font-family="Arial Black,Arial" font-weight="800" font-size="24" letter-spacing="-1.5" fill="#ffffff">bg</text>
+              </g>
+
+              <!-- canto de la cinta que avanza -->
+              <line id="edgeK" x1="14" y1="78.0" x2="106" y2="54.0" stroke="#9aa389" stroke-width="2.4" stroke-opacity=".85"/>
             </g>
-            <text x="60" y="41" text-anchor="middle" font-family="Arial Black,Arial" font-weight="800" font-size="24" letter-spacing="-1.5" fill="#ffffff">bg</text>
-            <path d="M24,26 Q24,10 40,10 L80,10 Q96,10 96,26 L99,224 Q99,240 83,240 L37,240 Q21,240 21,224 Z"
-                  fill="none" stroke="#000" stroke-opacity=".5"/>
+            <path d="M24,26 Q24,10 40,10 L80,10 Q96,10 96,26 L99,224 Q99,240 83,240 L37,240 Q21,240 21,224 Z" fill="none" stroke="#000" stroke-opacity=".5"/>
           </svg>
           <figcaption>Negro</figcaption>
         </figure>
@@ -498,8 +526,7 @@ const CONTACTO  = "hola@begrip.store";
 
 /* ── Efecto de scroll: los grips giran y se separan al bajar ─────────────── */
 (function () {
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-  if (reduce.matches) return;
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   var stage = document.getElementById("showcase");
   var l1 = document.querySelector("h1 .l1");
@@ -507,19 +534,47 @@ const CONTACTO  = "hola@begrip.store";
   var figs = stage ? Array.prototype.slice.call(stage.querySelectorAll("[data-grip]")) : [];
   if (!stage && !l1) return;
 
+  /* --- Enrollado: el canto avanza de abajo arriba, con el angulo de la espiral --- */
+  var wraps = [
+    { poly: document.getElementById("polyW"), edge: document.getElementById("edgeW") },
+    { poly: document.getElementById("polyK"), edge: document.getElementById("edgeK") }
+  ].filter(function (w) { return w.poly && w.edge; });
+
+  var Y0 = 258, Y1 = 2, SLANT = 12;   // recorrido del canto y caida del angulo
+
+  function setWrap(p) {
+    var y = Y0 + (Y1 - Y0) * p;
+    var pts = "14," + (y + SLANT).toFixed(1) + " 106," + (y - SLANT).toFixed(1) + " 106,262 14,262";
+    // el canto se desvanece al terminar de enrollar
+    var eo = p > .94 ? Math.max(0, (1 - p) / .06) * .85 : .85;
+    wraps.forEach(function (w) {
+      w.poly.setAttribute("points", pts);
+      w.edge.setAttribute("y1", (y + SLANT).toFixed(1));
+      w.edge.setAttribute("y2", (y - SLANT).toFixed(1));
+      w.edge.setAttribute("stroke-opacity", eo.toFixed(2));
+    });
+  }
+
+  // Con movimiento reducido: el grip aparece ya enrollado y sin animaciones.
+  if (reduced) { setWrap(1); return; }
+
   var ticking = false;
 
   function render() {
     ticking = false;
     var vh = window.innerHeight || document.documentElement.clientHeight;
 
+    var sy = window.pageYOffset || document.documentElement.scrollTop;
+    var t = Math.min(sy / (vh * 0.9), 1);           // 0 → 1 al bajar el primer viewport
+
     /* --- El titular: "no te suelta" se resiste a irse --- */
     if (l1 && l2) {
-      var y = window.pageYOffset || document.documentElement.scrollTop;
-      var t = Math.min(y / (vh * 0.9), 1);          // 0 → 1 al bajar el primer viewport
       l1.style.transform = "translate3d(0," + (-t * 78).toFixed(1) + "px,0)";
       l2.style.transform = "translate3d(0," + (-t * 16).toFixed(1) + "px,0)";  // se queda atrás: no se suelta
     }
+
+    /* --- Enrollado: 45% al cargar, el resto lo completa el scroll --- */
+    if (wraps.length) setWrap(0.75 + 0.25 * t);
 
     if (!stage || !figs.length) return;
     var r = stage.getBoundingClientRect();
