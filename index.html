@@ -238,7 +238,7 @@
             <defs>
               <clipPath id="silW"><path d="M24,26 Q24,10 40,10 L80,10 Q96,10 96,26 L99,224 Q99,240 83,240 L37,240 Q21,240 21,224 Z"/></clipPath>
               <!-- el borde de avance sigue el angulo real de la espiral -->
-              <clipPath id="wrpW"><polygon id="polyW" points="14,78.0 106,54.0 106,262 14,262"/></clipPath>
+              <clipPath id="wrpW"><polygon id="polyW" points="14,-4 106,-4 106,176.0 14,200.0"/></clipPath>
               <linearGradient id="seamW" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="6" y2="23" spreadMethod="repeat">
                 <stop offset="0" stop-color="#000" stop-opacity="0"/>
                 <stop offset=".70" stop-color="#000" stop-opacity="0"/>
@@ -292,7 +292,7 @@
               </g>
 
               <!-- canto de la cinta que avanza -->
-              <line id="edgeW" x1="14" y1="78.0" x2="106" y2="54.0" stroke="#ffffff" stroke-width="2.4" stroke-opacity=".85"/>
+              <line id="edgeW" x1="14" y1="200.0" x2="106" y2="176.0" stroke="#ffffff" stroke-width="2.4" stroke-opacity=".85"/>
             </g>
             <path d="M24,26 Q24,10 40,10 L80,10 Q96,10 96,26 L99,224 Q99,240 83,240 L37,240 Q21,240 21,224 Z" fill="none" stroke="#000" stroke-opacity=".28"/>
           </svg>
@@ -304,7 +304,7 @@
             <defs>
               <clipPath id="silK"><path d="M24,26 Q24,10 40,10 L80,10 Q96,10 96,26 L99,224 Q99,240 83,240 L37,240 Q21,240 21,224 Z"/></clipPath>
               <!-- el borde de avance sigue el angulo real de la espiral -->
-              <clipPath id="wrpK"><polygon id="polyK" points="14,78.0 106,54.0 106,262 14,262"/></clipPath>
+              <clipPath id="wrpK"><polygon id="polyK" points="14,-4 106,-4 106,176.0 14,200.0"/></clipPath>
               <linearGradient id="seamK" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="6" y2="23" spreadMethod="repeat">
                 <stop offset="0" stop-color="#000" stop-opacity="0"/>
                 <stop offset=".70" stop-color="#000" stop-opacity="0"/>
@@ -358,7 +358,7 @@
               </g>
 
               <!-- canto de la cinta que avanza -->
-              <line id="edgeK" x1="14" y1="78.0" x2="106" y2="54.0" stroke="#9aa389" stroke-width="2.4" stroke-opacity=".85"/>
+              <line id="edgeK" x1="14" y1="200.0" x2="106" y2="176.0" stroke="#9aa389" stroke-width="2.4" stroke-opacity=".85"/>
             </g>
             <path d="M24,26 Q24,10 40,10 L80,10 Q96,10 96,26 L99,224 Q99,240 83,240 L37,240 Q21,240 21,224 Z" fill="none" stroke="#000" stroke-opacity=".5"/>
           </svg>
@@ -540,11 +540,11 @@ const CONTACTO  = "hola@begrip.store";
     { poly: document.getElementById("polyK"), edge: document.getElementById("edgeK") }
   ].filter(function (w) { return w.poly && w.edge; });
 
-  var Y0 = 258, Y1 = 2, SLANT = 12;   // recorrido del canto y caida del angulo
+  var Y0 = -16, Y1 = 256, SLANT = 12;   // el canto baja: la cinta y el logo quedan puestos desde el inicio
 
   function setWrap(p) {
     var y = Y0 + (Y1 - Y0) * p;
-    var pts = "14," + (y + SLANT).toFixed(1) + " 106," + (y - SLANT).toFixed(1) + " 106,262 14,262";
+    var pts = "14,-4 106,-4 106," + (y - SLANT).toFixed(1) + " 14," + (y + SLANT).toFixed(1);
     // el canto se desvanece al terminar de enrollar
     var eo = p > .94 ? Math.max(0, (1 - p) / .06) * .85 : .85;
     wraps.forEach(function (w) {
