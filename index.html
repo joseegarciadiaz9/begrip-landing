@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BeGrip — Overgrips de pádel · Próximamente</title>
-<meta name="description" content="Overgrips de pádel con agarre real y máxima absorción. Packs desde 6,90 € y suscripción. Lanzamiento próximamente: déjanos tu email y te avisamos el primero.">
+<title>BeGrip — Overgrips de pádel · Envío al buzón en 24-48 h</title>
+<meta name="description" content="Overgrips de pádel con agarre real y máxima absorción. Packs desde 6,90 € y suscripción trimestral. Envío en sobre plano al buzón en 24-48 h.">
 <meta property="og:title" content="BeGrip — Overgrips de pádel">
-<meta property="og:description" content="El grip que no te suelta. Lanzamiento próximamente.">
+<meta property="og:description" content="El grip que no te suelta. Packs desde 6,90 € y envío al buzón en 24-48 h.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://begrip.store">
 <meta property="og:image" content="https://begrip.store/og.jpg">
@@ -17,7 +17,7 @@
 <meta property="og:locale" content="es_ES">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="BeGrip — Overgrips de pádel">
-<meta name="twitter:description" content="El grip que no te suelta. Lanzamiento próximamente.">
+<meta name="twitter:description" content="El grip que no te suelta. Packs desde 6,90 € y envío al buzón en 24-48 h.">
 <meta name="twitter:image" content="https://begrip.store/og.jpg">
 <meta name="theme-color" content="#0a0d08">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230c0f0a'/%3E%3Ctext x='50' y='70' text-anchor='middle' font-family='Arial Black,Arial' font-weight='800' font-size='54' fill='%23b6f035'%3Ebg%3C/text%3E%3C/svg%3E">
@@ -90,6 +90,9 @@
   }
   button:hover{ transform:translateY(-2px); filter:brightness(1.07); }
   button:disabled{ opacity:.6; cursor:default; transform:none; }
+  /* el unico boton relleno de volt es "Comprar": el del email va en secundario */
+  form button{ background:transparent; color:var(--muted); border:1px solid var(--line); }
+  form button:hover{ color:var(--volt); border-color:var(--volt); filter:none; }
   button:focus-visible, input:focus-visible, a:focus-visible{ outline:3px solid var(--volt); outline-offset:3px; }
   @media(max-width:560px){
     .field{ flex-direction:column; }
@@ -98,6 +101,18 @@
   .privacy{ color:var(--dim); font-size:.82rem; margin:13px 0 0; }
   .privacy.ok{ color:var(--volt); }
   .privacy.err{ color:#e8804f; }
+
+  .cta-row{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin:32px 0 0; }
+  .cta-main{
+    background:var(--volt); color:var(--ink); text-decoration:none;
+    font-family:var(--display); font-weight:800; text-transform:uppercase; letter-spacing:.04em;
+    font-size:.98rem; padding:17px 40px; border-radius:12px;
+    transition:transform .12s ease, filter .12s ease;
+  }
+  .cta-main:hover{ transform:translateY(-2px); filter:brightness(1.07); }
+  .cta-sub{ color:var(--muted); font-size:.92rem; text-decoration:none; border-bottom:1px solid var(--line); }
+  .cta-sub:hover{ color:var(--volt); border-color:var(--volt); }
+  @media(max-width:560px){ .cta-main{ width:100%; text-align:center; } }
 
   .done{ display:none; margin:34px 0 0; max-width:450px;
     border:1px solid var(--line); background:var(--ink-2); border-radius:14px; padding:22px 24px; }
@@ -187,6 +202,7 @@
     display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; }
   footer a{ color:var(--muted); text-decoration:none; }
   footer a:hover{ color:var(--volt); }
+  .legal-links{ display:flex; gap:18px; flex-wrap:wrap; }
 
   @media(prefers-reduced-motion:reduce){
     html{ scroll-behavior:auto; }
@@ -204,7 +220,7 @@
   <div class="container">
     <nav class="rise d1">
       <div class="logo"><span class="mark">bg</span>BeGrip</div>
-      <span class="soon">Próximamente</span>
+      <span class="soon">Envío al buzón 24-48 h</span>
     </nav>
 
     <header class="hero">
@@ -212,17 +228,22 @@
         <h1 class="rise d2"><span class="l1">El grip que</span><br><em class="l2">no te suelta</em></h1>
         <p class="lede rise d3">
           Overgrips de pádel con agarre real y máxima absorción del sudor.
-          Aún no están a la venta: déjanos tu email y te avisamos el día del lanzamiento.
+          Desde 2,30 € la unidad, en un sobre plano que te cabe en el buzón.
         </p>
+
+        <div class="cta-row rise d4">
+          <a href="#packs" class="cta-main">Comprar</a>
+          <a href="#club" class="cta-sub">o suscríbete al Club</a>
+        </div>
 
         <form id="signup" method="POST" class="rise d4">
           <div class="field">
             <label for="email" style="position:absolute;left:-9999px;">Tu email</label>
             <input id="email" type="email" name="email" required placeholder="tu@email.com" autocomplete="email">
-            <button type="submit">Avísame</button>
+            <button type="submit">Apuntarme</button>
           </div>
           <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
-          <p class="privacy" id="formMsg">Sin spam. Solo un correo el día que salgan.</p>
+          <p class="privacy" id="formMsg">¿Prefieres esperar? Te avisamos de novedades y ofertas. Sin spam.</p>
         </form>
 
         <div class="done" id="done">
@@ -372,10 +393,10 @@
   <div class="container">
     <section id="packs">
       <div class="sec-head">
-        <span class="eyebrow">Lo que vas a poder comprar</span>
+        <span class="eyebrow">Elige tu pack</span>
         <h2 class="sec">Cuantos más, mejor precio</h2>
-        <p>Estos son los packs con los que salimos. Todavía no se pueden comprar —
-           apúntate y serás de los primeros en tenerlos.</p>
+        <p>Estos son los packs con los que salimos. Pago seguro con tarjeta, Apple Pay o
+           Google Pay, y 14 días para devolverlo si no te convence.</p>
       </div>
 
       <div class="packs">
@@ -388,7 +409,7 @@
             <li>Agarre seco y antideslizante</li>
             <li>Envío 2,90 €</li>
           </ul>
-          <a href="#email" class="notify" data-notify>Avísame</a>
+          <a href="https://buy.stripe.com/eVq9AM4hS2nB4Uc1FebAs00" class="notify">Comprar</a>
         </div>
 
         <div class="pack feat">
@@ -401,7 +422,7 @@
             <li>Envío gratis al buzón</li>
             <li>Te duran unos 3 meses jugando 2 días/semana</li>
           </ul>
-          <a href="#email" class="notify" data-notify>Avísame</a>
+          <a href="https://buy.stripe.com/eVq8wIdSsd2f0DWes0bAs01" class="notify">Comprar</a>
         </div>
 
         <div class="pack">
@@ -413,7 +434,7 @@
             <li>Envío gratis</li>
             <li>Ideal para repartir entre el grupo</li>
           </ul>
-          <a href="#email" class="notify" data-notify>Avísame</a>
+          <a href="https://buy.stripe.com/8x2fZadSs0ftbiA4RqbAs02" class="notify">Comprar</a>
         </div>
       </div>
     </section>
@@ -421,7 +442,7 @@
 
   <!-- ---------- SUSCRIPCIÓN ---------- -->
   <div class="container">
-    <section>
+    <section id="club">
       <div class="club">
         <div>
           <span class="eyebrow">Club BeGrip</span>
@@ -433,7 +454,7 @@
         <div class="club-price">
           <div class="big">16,90 €</div>
           <div class="small">cada 3 meses · 1,41 € / ud</div>
-          <a href="#email" class="notify" data-notify>Avísame</a>
+          <a href="https://buy.stripe.com/00w9AM8y8e6j0DW6ZybAs03" class="notify">Suscribirme</a>
         </div>
       </div>
     </section>
@@ -450,8 +471,13 @@
     </section>
 
     <footer>
-      <span>BeGrip · begrip.store</span>
-      <span><a href="mailto:hola@begrip.store">hola@begrip.store</a></span>
+      <span>BeGrip · <a href="mailto:hola@begrip.store">hola@begrip.store</a></span>
+      <span class="legal-links">
+        <a href="/aviso-legal.html">Aviso legal</a>
+        <a href="/privacidad.html">Privacidad</a>
+        <a href="/condiciones.html">Condiciones</a>
+        <a href="/devoluciones.html">Devoluciones</a>
+      </span>
     </footer>
   </div>
 
@@ -474,15 +500,6 @@ const CONTACTO  = "hola@begrip.store";
 
   if (FORMSPREE) form.action = FORMSPREE;
 
-  // Los botones "Avísame" de los packs suben al formulario y le dan el foco
-  document.querySelectorAll("[data-notify]").forEach(function (a) {
-    a.addEventListener("click", function (e) {
-      e.preventDefault();
-      form.scrollIntoView({ behavior: "smooth", block: "center" });
-      setTimeout(function () { input.focus(); }, 420);
-    });
-  });
-
   function say(text, kind) {
     msg.textContent = text;
     msg.className = "privacy" + (kind ? " " + kind : "");
@@ -495,8 +512,8 @@ const CONTACTO  = "hola@begrip.store";
     if (!email) return;
 
     if (!FORMSPREE) {
-      const asunto = encodeURIComponent("Avísame del lanzamiento de BeGrip");
-      const cuerpo = encodeURIComponent("Hola BeGrip:\n\nAvisadme cuando salgan los overgrips.\nMi email: " + email + "\n");
+      const asunto = encodeURIComponent("Apúntame a las novedades de BeGrip");
+      const cuerpo = encodeURIComponent("Hola BeGrip:\n\nApuntadme a vuestras novedades y ofertas.\nMi email: " + email + "\n");
       window.location.href = "mailto:" + CONTACTO + "?subject=" + asunto + "&body=" + cuerpo;
       say("Te abrimos el correo para confirmarlo: dale a enviar y listo.", "ok");
       return;

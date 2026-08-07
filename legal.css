@@ -1,0 +1,56 @@
+/* Estilos compartidos por las páginas legales de BeGrip */
+:root{
+  --volt:#b6f035;
+  --ink:#080b06;
+  --ink-2:#11150d;
+  --line:#222a19;
+  --text:#eef1e6;
+  --muted:#8f9880;
+  --dim:#5e6651;
+  --display:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; }
+body{
+  background:var(--ink); color:var(--text); font-family:var(--body);
+  line-height:1.7; -webkit-font-smoothing:antialiased;
+}
+.container{ width:100%; max-width:760px; margin:0 auto; padding:0 26px; }
+
+nav{ display:flex; align-items:center; justify-content:space-between; padding:28px 0; }
+.logo{ font-family:var(--display); font-weight:800; font-size:1.45rem; letter-spacing:-.03em;
+  display:flex; align-items:center; gap:10px; color:var(--text); text-decoration:none; }
+.logo .mark{ width:34px; height:34px; border-radius:9px; background:var(--volt); color:var(--ink);
+  display:grid; place-items:center; font-size:1.02rem; font-weight:800; letter-spacing:-.08em; }
+.back{ font-family:var(--display); font-size:.66rem; font-weight:800; text-transform:uppercase;
+  letter-spacing:.17em; color:var(--muted); text-decoration:none; border:1px solid var(--line);
+  padding:7px 15px; border-radius:999px; white-space:nowrap; }
+.back:hover{ color:var(--volt); border-color:var(--volt); }
+
+main{ padding:26px 0 70px; border-top:1px solid var(--line); }
+h1{ font-family:var(--display); font-weight:800; text-transform:uppercase;
+  font-size:clamp(1.9rem,5vw,2.6rem); line-height:1; letter-spacing:-.025em; margin:34px 0 0; }
+.updated{ color:var(--dim); font-size:.84rem; margin:12px 0 0; }
+h2{ font-family:var(--display); font-weight:800; text-transform:uppercase;
+  font-size:1.05rem; letter-spacing:.01em; margin:44px 0 0; color:var(--text); }
+p{ color:var(--muted); margin:14px 0 0; }
+ul{ color:var(--muted); margin:14px 0 0; padding-left:20px; }
+li{ margin:7px 0; }
+strong{ color:var(--text); font-weight:700; }
+a{ color:var(--volt); }
+a:hover{ text-decoration:none; }
+a:focus-visible{ outline:3px solid var(--volt); outline-offset:3px; }
+
+.datos{ background:var(--ink-2); border:1px solid var(--line); border-radius:14px;
+  padding:22px 24px; margin:20px 0 0; }
+.datos p{ margin:6px 0 0; }
+.datos p:first-child{ margin-top:0; }
+
+.pendiente{ color:#e8804f; }
+
+footer{ border-top:1px solid var(--line); padding:24px 0 44px; color:var(--dim); font-size:.85rem;
+  display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+footer a{ color:var(--muted); text-decoration:none; }
+footer a:hover{ color:var(--volt); }
+.legal-links{ display:flex; gap:18px; flex-wrap:wrap; }
