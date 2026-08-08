@@ -218,8 +218,10 @@
   .club-price .notify{ margin-top:16px; display:inline-block; width:auto; padding:13px 24px; }
 
   /* ---------- ASÍ TE LLEGA: rollo → mango ---------- */
+  /* alineados por abajo: el rollo es más bajo que el mango y si no, los pies
+     de foto quedan a distinta altura */
   .duo{
-    display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:22px;
+    display:grid; grid-template-columns:1fr auto 1fr; align-items:end; gap:22px;
     background:var(--ink-2); border:1px solid var(--line); border-radius:18px;
     padding:34px 26px 26px;
   }
@@ -237,7 +239,8 @@
   }
   .duo .txt{ color:var(--muted); font-size:.9rem; margin-top:5px; }
   .duo .flecha{ color:var(--dim); font-size:1.5rem; line-height:1;
-    display:grid; place-items:center; }
+    display:grid; place-items:center; align-self:center; padding-bottom:52px; }
+  @media(max-width:720px){ .duo .flecha{ padding-bottom:0; } }
 
   /* ---------- ESPECIFICACIONES ---------- */
   .specs{ list-style:none; padding:0; margin:26px 0 0;
@@ -499,40 +502,43 @@
 
       <div class="duo">
         <figure>
-          <!-- ROLLO: el producto tal cual sale del sobre -->
-          <svg viewBox="0 0 120 250" width="98" xmlns="http://www.w3.org/2000/svg"
+          <!-- ROLLO: proporciones reales — la cinta mide 25 mm de ancho, así que
+               enrollada da un cilindro achatado, casi tan ancho como alto -->
+          <svg viewBox="0 0 140 130" width="132" xmlns="http://www.w3.org/2000/svg"
                role="img" aria-label="Overgrip BeGrip enrollado, tal como te llega">
             <defs>
-              <linearGradient id="cilR" gradientUnits="userSpaceOnUse" x1="30" y1="0" x2="90" y2="0">
-                <stop offset="0" stop-color="#000" stop-opacity=".44"/>
-                <stop offset=".10" stop-color="#000" stop-opacity=".16"/>
-                <stop offset=".30" stop-color="#fff" stop-opacity=".60"/>
-                <stop offset=".46" stop-color="#fff" stop-opacity=".08"/>
-                <stop offset=".70" stop-color="#000" stop-opacity="0"/>
-                <stop offset=".88" stop-color="#000" stop-opacity=".26"/>
-                <stop offset="1" stop-color="#000" stop-opacity=".52"/>
+              <linearGradient id="cilR" gradientUnits="userSpaceOnUse" x1="20" y1="0" x2="120" y2="0">
+                <stop offset="0" stop-color="#000" stop-opacity=".46"/>
+                <stop offset=".09" stop-color="#000" stop-opacity=".17"/>
+                <stop offset=".28" stop-color="#fff" stop-opacity=".62"/>
+                <stop offset=".44" stop-color="#fff" stop-opacity=".08"/>
+                <stop offset=".68" stop-color="#000" stop-opacity="0"/>
+                <stop offset=".87" stop-color="#000" stop-opacity=".28"/>
+                <stop offset="1" stop-color="#000" stop-opacity=".54"/>
               </linearGradient>
             </defs>
 
-            <!-- cola de cinta que asoma -->
-            <path d="M88,196 q16,6 15,20 q-9,-8 -15,-6 Z" fill="#d8dcd0"/>
+            <!-- cola de cinta que asoma por el lateral -->
+            <path d="M118,92 q14,4 14,15 q-8,-7 -15,-5 Z" fill="#d5d9cc"/>
 
-            <!-- cuerpo cilíndrico -->
-            <path d="M30,52 L30,196 a30,12 0 0 0 60,0 L90,52 Z" fill="#eceee7"/>
-            <path d="M30,52 L30,196 a30,12 0 0 0 60,0 L90,52 Z" fill="url(#cilR)"/>
+            <!-- cuerpo del rollo -->
+            <path d="M20,26 L20,100 a50,13 0 0 0 100,0 L120,26 Z" fill="#eceee7"/>
+            <path d="M20,26 L20,100 a50,13 0 0 0 100,0 L120,26 Z" fill="url(#cilR)"/>
 
-            <!-- cinta de acabado con el logo -->
-            <path d="M30,74 L30,112 a30,12 0 0 0 60,0 L90,74 a30,12 0 0 1 -60,0 Z" fill="#0a0d08"/>
-            <path d="M30,74 L30,112 a30,12 0 0 0 60,0 L90,74 a30,12 0 0 1 -60,0 Z" fill="url(#cilR)" opacity=".45"/>
-            <text x="60" y="103" text-anchor="middle" font-family="Arial Black,Arial"
-                  font-weight="800" font-size="21" letter-spacing="-1.4" fill="#ffffff">bg</text>
+            <!-- cinta de acabado, ancha como en el producto real -->
+            <path d="M20,50 L20,86 a50,13 0 0 0 100,0 L120,50 a50,13 0 0 1 -100,0 Z" fill="#0a0d08"/>
+            <path d="M20,50 L20,86 a50,13 0 0 0 100,0 L120,50 a50,13 0 0 1 -100,0 Z"
+                  fill="url(#cilR)" opacity=".4"/>
+            <text x="70" y="77" text-anchor="middle" font-family="Arial Black,Arial"
+                  font-weight="800" font-size="27" letter-spacing="-1.8" fill="#ffffff">bg</text>
 
-            <!-- espiral del extremo enrollado -->
-            <ellipse cx="60" cy="52" rx="30" ry="12" fill="#e2e5dc"/>
-            <ellipse cx="60" cy="52" rx="30" ry="12" fill="none" stroke="#000" stroke-opacity=".22"/>
-            <ellipse cx="60" cy="52" rx="22" ry="8.6" fill="none" stroke="#000" stroke-opacity=".16"/>
-            <ellipse cx="60" cy="52" rx="14" ry="5.4" fill="none" stroke="#000" stroke-opacity=".16"/>
-            <ellipse cx="60" cy="52" rx="6.5" ry="2.6" fill="#c9cec1"/>
+            <!-- espiral del extremo: las capas de cinta enrollada -->
+            <ellipse cx="70" cy="26" rx="50" ry="13" fill="#e3e6dd"/>
+            <ellipse cx="70" cy="26" rx="50" ry="13" fill="none" stroke="#000" stroke-opacity=".24"/>
+            <ellipse cx="70" cy="26" rx="39" ry="10.1" fill="none" stroke="#000" stroke-opacity=".15"/>
+            <ellipse cx="70" cy="26" rx="28" ry="7.3" fill="none" stroke="#000" stroke-opacity=".15"/>
+            <ellipse cx="70" cy="26" rx="17" ry="4.4" fill="none" stroke="#000" stroke-opacity=".15"/>
+            <ellipse cx="70" cy="26" rx="7" ry="1.9" fill="#c6cbbd"/>
           </svg>
           <figcaption>
             <div class="lab">Así te llega</div>
