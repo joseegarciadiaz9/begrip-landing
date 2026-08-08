@@ -217,6 +217,78 @@
   .club-price .small{ color:var(--muted); font-size:.86rem; margin-top:6px; }
   .club-price .notify{ margin-top:16px; display:inline-block; width:auto; padding:13px 24px; }
 
+  /* ---------- ASÍ TE LLEGA: rollo → mango ---------- */
+  .duo{
+    display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:22px;
+    background:var(--ink-2); border:1px solid var(--line); border-radius:18px;
+    padding:34px 26px 26px;
+  }
+  @media(max-width:720px){
+    .duo{ grid-template-columns:1fr; gap:16px; padding:26px 20px 20px; }
+    /* la flecha se gira: hay que fijarle caja o al rotar invade las figuras */
+    .duo .flecha{ transform:rotate(90deg); width:1.6rem; height:1.6rem; margin:4px auto; }
+  }
+  .duo figure{ margin:0; text-align:center; }
+  .duo svg{ display:block; margin:0 auto; filter:drop-shadow(0 20px 26px rgba(0,0,0,.5)); }
+  .duo figcaption{ margin-top:16px; }
+  .duo .lab{
+    font-family:var(--display); font-size:.68rem; font-weight:800; text-transform:uppercase;
+    letter-spacing:.14em; color:var(--volt);
+  }
+  .duo .txt{ color:var(--muted); font-size:.9rem; margin-top:5px; }
+  .duo .flecha{ color:var(--dim); font-size:1.5rem; line-height:1;
+    display:grid; place-items:center; }
+
+  /* ---------- ESPECIFICACIONES ---------- */
+  .specs{ list-style:none; padding:0; margin:26px 0 0;
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:14px; overflow:hidden; }
+  .specs > div{ background:var(--ink-2); padding:16px 18px; }
+  .specs dt{ font-size:.68rem; font-weight:800; text-transform:uppercase; letter-spacing:.12em;
+    color:var(--dim); }
+  .specs dd{ margin:5px 0 0; font-family:var(--display); font-weight:800; font-size:1.02rem; }
+
+  /* ---------- PASOS Y FRECUENCIA ---------- */
+  .dos-col{ display:grid; grid-template-columns:1.05fr .95fr; gap:44px; align-items:start; }
+  @media(max-width:820px){ .dos-col{ grid-template-columns:1fr; gap:38px; } }
+  h3.mini{ font-family:var(--display); font-weight:800; text-transform:uppercase;
+    font-size:1.15rem; letter-spacing:-.01em; margin:0 0 18px; }
+
+  .pasos{ list-style:none; padding:0; margin:0; counter-reset:p; }
+  .pasos li{ display:flex; gap:14px; padding:0 0 18px; }
+  .pasos li::before{
+    counter-increment:p; content:counter(p);
+    width:26px; height:26px; flex:none; border-radius:50%;
+    background:var(--volt); color:var(--ink);
+    font-family:var(--display); font-weight:800; font-size:.8rem;
+    display:grid; place-items:center;
+  }
+  .pasos p{ margin:0; color:var(--muted); font-size:.94rem; line-height:1.55; }
+  .pasos b{ color:var(--text); font-weight:700; }
+
+  .frec{ border-top:1px solid var(--line); }
+  .frec div{ display:flex; justify-content:space-between; align-items:baseline; gap:14px;
+    padding:14px 0; border-bottom:1px solid var(--line); }
+  .frec .q{ color:var(--text); font-size:.94rem; }
+  .frec .a{ font-family:var(--display); font-weight:800; color:var(--volt);
+    font-size:.9rem; white-space:nowrap; }
+  .frec-nota{ color:var(--dim); font-size:.85rem; margin:16px 0 0; }
+
+  /* ---------- QUIÉN ESTÁ DETRÁS ---------- */
+  .quien{ display:grid; grid-template-columns:auto 1fr; gap:26px; align-items:start;
+    background:var(--ink-2); border:1px solid var(--line); border-radius:18px; padding:32px; }
+  @media(max-width:720px){ .quien{ grid-template-columns:1fr; padding:26px; gap:18px; } }
+  .quien .ini{
+    width:64px; height:64px; border-radius:18px; background:var(--volt); color:var(--ink);
+    display:grid; place-items:center; font-family:var(--display);
+    font-weight:800; font-size:1.5rem; letter-spacing:-.04em;
+  }
+  .quien p{ color:var(--muted); margin:0 0 12px; }
+  .quien p:last-child{ margin-bottom:0; }
+  .quien strong{ color:var(--text); }
+  .quien .firma{ font-family:var(--display); font-weight:800; color:var(--text);
+    text-transform:uppercase; letter-spacing:.03em; font-size:.82rem; margin-top:16px; }
+
   /* ---------- STRIP ---------- */
   .strip ul{ list-style:none; margin:0; padding:0; display:flex; gap:34px; flex-wrap:wrap;
     color:var(--muted); font-size:.9rem; }
@@ -415,6 +487,117 @@
     </header>
   </div>
 
+  <!-- ---------- ASÍ TE LLEGA ---------- -->
+  <div class="container">
+    <section id="producto">
+      <div class="sec-head">
+        <span class="eyebrow">El producto</span>
+        <h2 class="sec">Así te llega, así queda</h2>
+        <p>Cada unidad es un rollo con su cinta de acabado. Lo enrollas en el mango
+           una vez y te dura semanas.</p>
+      </div>
+
+      <div class="duo">
+        <figure>
+          <!-- ROLLO: el producto tal cual sale del sobre -->
+          <svg viewBox="0 0 120 250" width="98" xmlns="http://www.w3.org/2000/svg"
+               role="img" aria-label="Overgrip BeGrip enrollado, tal como te llega">
+            <defs>
+              <linearGradient id="cilR" gradientUnits="userSpaceOnUse" x1="30" y1="0" x2="90" y2="0">
+                <stop offset="0" stop-color="#000" stop-opacity=".44"/>
+                <stop offset=".10" stop-color="#000" stop-opacity=".16"/>
+                <stop offset=".30" stop-color="#fff" stop-opacity=".60"/>
+                <stop offset=".46" stop-color="#fff" stop-opacity=".08"/>
+                <stop offset=".70" stop-color="#000" stop-opacity="0"/>
+                <stop offset=".88" stop-color="#000" stop-opacity=".26"/>
+                <stop offset="1" stop-color="#000" stop-opacity=".52"/>
+              </linearGradient>
+            </defs>
+
+            <!-- cola de cinta que asoma -->
+            <path d="M88,196 q16,6 15,20 q-9,-8 -15,-6 Z" fill="#d8dcd0"/>
+
+            <!-- cuerpo cilíndrico -->
+            <path d="M30,52 L30,196 a30,12 0 0 0 60,0 L90,52 Z" fill="#eceee7"/>
+            <path d="M30,52 L30,196 a30,12 0 0 0 60,0 L90,52 Z" fill="url(#cilR)"/>
+
+            <!-- cinta de acabado con el logo -->
+            <path d="M30,74 L30,112 a30,12 0 0 0 60,0 L90,74 a30,12 0 0 1 -60,0 Z" fill="#0a0d08"/>
+            <path d="M30,74 L30,112 a30,12 0 0 0 60,0 L90,74 a30,12 0 0 1 -60,0 Z" fill="url(#cilR)" opacity=".45"/>
+            <text x="60" y="103" text-anchor="middle" font-family="Arial Black,Arial"
+                  font-weight="800" font-size="21" letter-spacing="-1.4" fill="#ffffff">bg</text>
+
+            <!-- espiral del extremo enrollado -->
+            <ellipse cx="60" cy="52" rx="30" ry="12" fill="#e2e5dc"/>
+            <ellipse cx="60" cy="52" rx="30" ry="12" fill="none" stroke="#000" stroke-opacity=".22"/>
+            <ellipse cx="60" cy="52" rx="22" ry="8.6" fill="none" stroke="#000" stroke-opacity=".16"/>
+            <ellipse cx="60" cy="52" rx="14" ry="5.4" fill="none" stroke="#000" stroke-opacity=".16"/>
+            <ellipse cx="60" cy="52" rx="6.5" ry="2.6" fill="#c9cec1"/>
+          </svg>
+          <figcaption>
+            <div class="lab">Así te llega</div>
+            <div class="txt">Un rollo por unidad, con su cinta de acabado</div>
+          </figcaption>
+        </figure>
+
+        <div class="flecha" aria-hidden="true">→</div>
+
+        <figure>
+          <!-- MANGO YA ENROLLADO -->
+          <svg viewBox="0 0 120 250" width="98" xmlns="http://www.w3.org/2000/svg"
+               role="img" aria-label="Overgrip BeGrip colocado en el mango de la pala">
+            <defs>
+              <clipPath id="silP"><path d="M24,26 Q24,10 40,10 L80,10 Q96,10 96,26 L99,224 Q99,240 83,240 L37,240 Q21,240 21,224 Z"/></clipPath>
+              <linearGradient id="seamP" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="6" y2="23" spreadMethod="repeat">
+                <stop offset="0" stop-color="#000" stop-opacity="0"/>
+                <stop offset=".70" stop-color="#000" stop-opacity="0"/>
+                <stop offset=".88" stop-color="#000" stop-opacity=".20"/>
+                <stop offset=".945" stop-color="#fff" stop-opacity=".95"/>
+                <stop offset=".975" stop-color="#000" stop-opacity=".10"/>
+                <stop offset="1" stop-color="#000" stop-opacity="0"/>
+              </linearGradient>
+              <linearGradient id="cylP" gradientUnits="userSpaceOnUse" x1="21" y1="0" x2="99" y2="0">
+                <stop offset="0" stop-color="#000" stop-opacity=".40"/>
+                <stop offset=".07" stop-color="#000" stop-opacity=".18"/>
+                <stop offset=".20" stop-color="#fff" stop-opacity=".10"/>
+                <stop offset=".32" stop-color="#fff" stop-opacity=".68"/>
+                <stop offset=".43" stop-color="#fff" stop-opacity=".10"/>
+                <stop offset=".60" stop-color="#000" stop-opacity="0"/>
+                <stop offset=".82" stop-color="#000" stop-opacity=".20"/>
+                <stop offset="1" stop-color="#000" stop-opacity=".46"/>
+              </linearGradient>
+            </defs>
+            <g clip-path="url(#silP)">
+              <rect x="18" y="8" width="84" height="234" fill="#eceee7"/>
+              <rect x="18" y="8" width="84" height="234" fill="url(#seamP)"/>
+              <rect x="18" y="8" width="84" height="234" fill="url(#cylP)"/>
+              <rect x="18" y="8" width="84" height="46" fill="#0a0d08"/>
+              <rect x="18" y="8" width="84" height="46" fill="url(#cylP)" opacity=".5"/>
+              <rect x="18" y="54" width="84" height="7" fill="#000" opacity=".22"/>
+              <text x="60" y="41" text-anchor="middle" font-family="Arial Black,Arial"
+                    font-weight="800" font-size="24" letter-spacing="-1.5" fill="#ffffff">bg</text>
+            </g>
+            <path d="M24,26 Q24,10 40,10 L80,10 Q96,10 96,26 L99,224 Q99,240 83,240 L37,240 Q21,240 21,224 Z"
+                  fill="none" stroke="#000" stroke-opacity=".28"/>
+          </svg>
+          <figcaption>
+            <div class="lab">Así queda</div>
+            <div class="txt">Ponerlo lleva menos de un minuto</div>
+          </figcaption>
+        </figure>
+      </div>
+
+      <dl class="specs">
+        <div><dt>Medidas</dt><dd>1.100 × 25 mm</dd></div>
+        <div><dt>Grosor</dt><dd>0,6 mm</dd></div>
+        <div><dt>Material</dt><dd>Poliuretano</dd></div>
+        <div><dt>Superficie</dt><dd>Perforada</dd></div>
+        <div><dt>Colores</dt><dd>Blanco y negro</dd></div>
+        <div><dt>Incluye</dt><dd>Cinta de acabado</dd></div>
+      </dl>
+    </section>
+  </div>
+
   <!-- ---------- PACKS ---------- -->
   <div class="container">
     <section id="packs">
@@ -489,6 +672,66 @@
     </section>
   </div>
 
+  <!-- ---------- CÓMO SE PONE / CADA CUÁNTO ---------- -->
+  <div class="container">
+    <section id="uso">
+      <div class="sec-head">
+        <span class="eyebrow">Lo que nadie te explica</span>
+        <h2 class="sec">Cómo se pone y cada cuánto</h2>
+      </div>
+
+      <div class="dos-col">
+        <div>
+          <h3 class="mini">Cómo se pone</h3>
+          <ol class="pasos">
+            <li><p><b>Quita el grip viejo</b> y limpia el mango. Si queda pegamento, un paño con alcohol.</p></li>
+            <li><p><b>Empieza por abajo</b>, con el lado adhesivo hacia dentro y el borde alineado con la base del mango.</p></li>
+            <li><p><b>Enrolla hacia arriba</b> solapando 2-3 mm en cada vuelta y tirando un poco de la cinta para que quede tensa.</p></li>
+            <li><p><b>Corta el sobrante</b> y sella el final con la cinta de acabado.</p></li>
+          </ol>
+        </div>
+
+        <div>
+          <h3 class="mini">Cada cuánto cambiarlo</h3>
+          <div class="frec">
+            <div><span class="q">Juegas 1-2 días por semana</span><span class="a">cada 3-4 semanas</span></div>
+            <div><span class="q">Juegas 3-4 días por semana</span><span class="a">cada 1-2 semanas</span></div>
+            <div><span class="q">Juegas casi a diario</span><span class="a">cada semana</span></div>
+          </div>
+          <p class="frec-nota">Si el tuyo lleva más de un mes puesto, ya no absorbe: está lleno
+             de sudor seco y endurecido. Te da sensación de agarre, pero en el punto decisivo
+             resbala. Casi todo el mundo lo cambia mucho menos de lo que debería, básicamente
+             porque cuesta acordarse.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ---------- QUIÉN ESTÁ DETRÁS ---------- -->
+  <div class="container">
+    <section id="quien">
+      <div class="sec-head">
+        <span class="eyebrow">Quién está detrás</span>
+        <h2 class="sec">Esto lo lleva una persona</h2>
+      </div>
+
+      <div class="quien">
+        <div class="ini" aria-hidden="true">JA</div>
+        <div>
+          <p>Me llamo <strong>José Ángel</strong> y juego al pádel en Huelva. Monté BeGrip
+             porque me cansé de que se me resbalara la pala en el punto importante, y de
+             pagar precios de tienda por algo que se gasta cada dos semanas.</p>
+          <p>No hay fábrica propia, ni inversores, ni un almacén. Hay <strong>un proveedor
+             elegido después de comparar tres</strong>, un primer lote pagado de mi bolsillo
+             y bastantes dudas. Los pedidos los preparo y los llevo yo a Correos.</p>
+          <p>Si algo sale mal con tu pedido, no vas a hablar con un formulario:
+             <strong>me escribes y te contesto yo</strong>.</p>
+          <p class="firma">José Ángel · Huelva</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
   <!-- ---------- STRIP ---------- -->
   <div class="container">
     <section class="strip" style="padding:34px 0 46px">
@@ -527,7 +770,22 @@ const CONTACTO  = "hola@begrip.store";
      1. Stripe esta en modo activo (no en modo prueba).
      2. Tienes el stock en casa para poder enviar.                            */
 const VENTA_ABIERTA = false;
+
+/* Analitica SIN cookies (Cloudflare Web Analytics, gratis).
+   Pega aqui el token y empieza a medir visitas. Mientras este vacio no se
+   carga ningun script, asi que no hace falta banner de cookies ni tocar la
+   politica de privacidad.                                                    */
+const ANALITICA_TOKEN = "";
 /* ─────────────────────────────────────────────────────────────────────────── */
+
+(function () {
+  if (!ANALITICA_TOKEN) return;
+  var s = document.createElement("script");
+  s.defer = true;
+  s.src = "https://static.cloudflareinsights.com/beacon.min.js";
+  s.setAttribute("data-cf-beacon", JSON.stringify({ token: ANALITICA_TOKEN }));
+  document.head.appendChild(s);
+})();
 
 /* Los enlaces de Stripe viven en el atributo data-buy y solo se convierten en
    enlaces de verdad si VENTA_ABIERTA es true. Asi, si el JS fallase o estuviera
