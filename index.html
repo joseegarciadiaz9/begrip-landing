@@ -316,6 +316,20 @@
 <body>
 <div class="glow"></div>
 <div class="content">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- perforado del overgrip: se aplica bajo el sombreado -->
+    <pattern id="perf" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-10)">
+      <circle cx="1.5" cy="1.8" r=".72" fill="#000" fill-opacity=".13"/>
+      <circle cx="4.9" cy="3.4" r=".62" fill="#000" fill-opacity=".11"/>
+      <circle cx="3.1" cy="5.9" r=".70" fill="#000" fill-opacity=".13"/>
+      <circle cx="6.3" cy="6.4" r=".55" fill="#000" fill-opacity=".10"/>
+      <circle cx="1.5" cy="1.8" r=".72" fill="none" stroke="#fff" stroke-opacity=".10" stroke-width=".34"/>
+      <circle cx="3.1" cy="5.9" r=".70" fill="none" stroke="#fff" stroke-opacity=".10" stroke-width=".34"/>
+    </pattern>
+  </defs>
+</svg>
+
 
   <div class="container">
     <nav class="rise d1">
@@ -361,13 +375,16 @@
               <clipPath id="silW"><path d="M24,26 Q24,10 40,10 L80,10 Q96,10 96,26 L99,224 Q99,240 83,240 L37,240 Q21,240 21,224 Z"/></clipPath>
               <!-- el borde de avance sigue el angulo real de la espiral -->
               <clipPath id="wrpW"><polygon id="polyW" points="14,-4 106,-4 106,176.0 14,200.0"/></clipPath>
-              <linearGradient id="seamW" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="6" y2="23" spreadMethod="repeat">
-                <stop offset="0" stop-color="#000" stop-opacity="0"/>
-                <stop offset=".70" stop-color="#000" stop-opacity="0"/>
-                <stop offset=".88" stop-color="#000" stop-opacity=".20"/>
-                <stop offset=".945" stop-color="#fff" stop-opacity=".95"/>
-                <stop offset=".975" stop-color="#000" stop-opacity=".10"/>
-                <stop offset="1" stop-color="#000" stop-opacity="0"/>
+              <linearGradient id="seamW" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="4" y2="23" spreadMethod="repeat">
+                <stop offset="0" stop-color="#000" stop-opacity=".05"/>
+                <stop offset=".30" stop-color="#fff" stop-opacity=".10"/>
+                <stop offset=".62" stop-color="#000" stop-opacity=".03"/>
+                <stop offset=".78" stop-color="#000" stop-opacity=".26"/>
+                <stop offset=".875" stop-color="#000" stop-opacity=".52"/>
+                <stop offset=".915" stop-color="#000" stop-opacity=".22"/>
+                <stop offset=".945" stop-color="#fff" stop-opacity=".92"/>
+                <stop offset=".972" stop-color="#fff" stop-opacity=".30"/>
+                <stop offset="1" stop-color="#000" stop-opacity=".08"/>
               </linearGradient>
               <linearGradient id="cylW" gradientUnits="userSpaceOnUse" x1="21" y1="0" x2="99" y2="0">
                 <stop offset="0" stop-color="#000" stop-opacity=".40"/>
@@ -404,6 +421,7 @@
               <!-- OVERGRIP: se enrolla segun el scroll -->
               <g clip-path="url(#wrpW)">
                 <rect x="18" y="8" width="84" height="234" fill="#eceee7"/>
+                <rect x="18" y="8" width="84" height="234" fill="url(#perf)"/>
                 <rect x="18" y="8" width="84" height="234" fill="url(#seamW)"/>
                 <rect x="18" y="8" width="84" height="234" fill="url(#cylW)"/>
                 <rect x="18" y="8" width="84" height="234" fill="url(#lenW)"/>
@@ -411,6 +429,7 @@
                 <rect x="18" y="8" width="84" height="46" fill="url(#cylW)" opacity=".5"/>
                 <rect x="18" y="54" width="84" height="7" fill="#000" opacity=".22"/>
                 <text x="60" y="41" text-anchor="middle" font-family="Arial Black,Arial" font-weight="800" font-size="24" letter-spacing="-1.5" fill="#ffffff">bg</text>
+                <ellipse cx="60" cy="240" rx="44" ry="9" fill="#000" opacity=".26"/><ellipse cx="60" cy="232" rx="44" ry="7" fill="#fff" opacity=".07"/>
               </g>
 
               <!-- canto de la cinta que avanza -->
@@ -427,13 +446,16 @@
               <clipPath id="silK"><path d="M24,26 Q24,10 40,10 L80,10 Q96,10 96,26 L99,224 Q99,240 83,240 L37,240 Q21,240 21,224 Z"/></clipPath>
               <!-- el borde de avance sigue el angulo real de la espiral -->
               <clipPath id="wrpK"><polygon id="polyK" points="14,-4 106,-4 106,176.0 14,200.0"/></clipPath>
-              <linearGradient id="seamK" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="6" y2="23" spreadMethod="repeat">
-                <stop offset="0" stop-color="#000" stop-opacity="0"/>
-                <stop offset=".70" stop-color="#000" stop-opacity="0"/>
-                <stop offset=".88" stop-color="#000" stop-opacity=".62"/>
-                <stop offset=".945" stop-color="#fff" stop-opacity=".30"/>
-                <stop offset=".975" stop-color="#000" stop-opacity=".24"/>
-                <stop offset="1" stop-color="#000" stop-opacity="0"/>
+              <linearGradient id="seamK" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="4" y2="23" spreadMethod="repeat">
+                <stop offset="0" stop-color="#000" stop-opacity=".18"/>
+                <stop offset=".30" stop-color="#fff" stop-opacity=".05"/>
+                <stop offset=".62" stop-color="#000" stop-opacity=".14"/>
+                <stop offset=".78" stop-color="#000" stop-opacity=".52"/>
+                <stop offset=".875" stop-color="#000" stop-opacity=".82"/>
+                <stop offset=".915" stop-color="#000" stop-opacity=".45"/>
+                <stop offset=".945" stop-color="#fff" stop-opacity=".34"/>
+                <stop offset=".972" stop-color="#fff" stop-opacity=".10"/>
+                <stop offset="1" stop-color="#000" stop-opacity=".22"/>
               </linearGradient>
               <linearGradient id="cylK" gradientUnits="userSpaceOnUse" x1="21" y1="0" x2="99" y2="0">
                 <stop offset="0" stop-color="#000" stop-opacity=".62"/>
@@ -470,6 +492,7 @@
               <!-- OVERGRIP: se enrolla segun el scroll -->
               <g clip-path="url(#wrpK)">
                 <rect x="18" y="8" width="84" height="234" fill="#2c3327"/>
+                <rect x="18" y="8" width="84" height="234" fill="url(#perf)"/>
                 <rect x="18" y="8" width="84" height="234" fill="url(#seamK)"/>
                 <rect x="18" y="8" width="84" height="234" fill="url(#cylK)"/>
                 <rect x="18" y="8" width="84" height="234" fill="url(#lenK)"/>
@@ -477,6 +500,7 @@
                 <rect x="18" y="8" width="84" height="46" fill="url(#cylK)" opacity=".22"/>
                 <rect x="18" y="54" width="84" height="7" fill="#000" opacity=".30"/>
                 <text x="60" y="41" text-anchor="middle" font-family="Arial Black,Arial" font-weight="800" font-size="24" letter-spacing="-1.5" fill="#0a0d08">bg</text>
+                <ellipse cx="60" cy="240" rx="44" ry="9" fill="#000" opacity=".26"/><ellipse cx="60" cy="232" rx="44" ry="7" fill="#fff" opacity=".07"/>
               </g>
 
               <!-- canto de la cinta que avanza -->
@@ -554,13 +578,16 @@
                role="img" aria-label="Overgrip BeGrip colocado en el mango de la pala">
             <defs>
               <clipPath id="silP"><path d="M24,26 Q24,10 40,10 L80,10 Q96,10 96,26 L99,224 Q99,240 83,240 L37,240 Q21,240 21,224 Z"/></clipPath>
-              <linearGradient id="seamP" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="6" y2="23" spreadMethod="repeat">
-                <stop offset="0" stop-color="#000" stop-opacity="0"/>
-                <stop offset=".70" stop-color="#000" stop-opacity="0"/>
-                <stop offset=".88" stop-color="#000" stop-opacity=".20"/>
-                <stop offset=".945" stop-color="#fff" stop-opacity=".95"/>
-                <stop offset=".975" stop-color="#000" stop-opacity=".10"/>
-                <stop offset="1" stop-color="#000" stop-opacity="0"/>
+              <linearGradient id="seamP" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="4" y2="23" spreadMethod="repeat">
+                <stop offset="0" stop-color="#000" stop-opacity=".05"/>
+                <stop offset=".30" stop-color="#fff" stop-opacity=".10"/>
+                <stop offset=".62" stop-color="#000" stop-opacity=".03"/>
+                <stop offset=".78" stop-color="#000" stop-opacity=".26"/>
+                <stop offset=".875" stop-color="#000" stop-opacity=".52"/>
+                <stop offset=".915" stop-color="#000" stop-opacity=".22"/>
+                <stop offset=".945" stop-color="#fff" stop-opacity=".92"/>
+                <stop offset=".972" stop-color="#fff" stop-opacity=".30"/>
+                <stop offset="1" stop-color="#000" stop-opacity=".08"/>
               </linearGradient>
               <linearGradient id="cylP" gradientUnits="userSpaceOnUse" x1="21" y1="0" x2="99" y2="0">
                 <stop offset="0" stop-color="#000" stop-opacity=".40"/>
@@ -575,6 +602,7 @@
             </defs>
             <g clip-path="url(#silP)">
               <rect x="18" y="8" width="84" height="234" fill="#eceee7"/>
+              <rect x="18" y="8" width="84" height="234" fill="url(#perf)"/>
               <rect x="18" y="8" width="84" height="234" fill="url(#seamP)"/>
               <rect x="18" y="8" width="84" height="234" fill="url(#cylP)"/>
               <rect x="18" y="8" width="84" height="46" fill="#0a0d08"/>
@@ -582,6 +610,7 @@
               <rect x="18" y="54" width="84" height="7" fill="#000" opacity=".22"/>
               <text x="60" y="41" text-anchor="middle" font-family="Arial Black,Arial"
                     font-weight="800" font-size="24" letter-spacing="-1.5" fill="#ffffff">bg</text>
+                <ellipse cx="60" cy="240" rx="44" ry="9" fill="#000" opacity=".26"/><ellipse cx="60" cy="232" rx="44" ry="7" fill="#fff" opacity=".07"/>
             </g>
             <path d="M24,26 Q24,10 40,10 L80,10 Q96,10 96,26 L99,224 Q99,240 83,240 L37,240 Q21,240 21,224 Z"
                   fill="none" stroke="#000" stroke-opacity=".28"/>
